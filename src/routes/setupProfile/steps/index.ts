@@ -1,0 +1,10 @@
+export {default as Step1ProfileScreen} from './Step1Profile';
+export {default as Step3LocationScreen} from './Step3Location';
+export {default as Step2CommunityScreen} from './Step2Community';
+export {default as Step4BasicInfoScreen} from './Step4BasicInfo';
+export {default as Step5EmailScreen} from './Step5Email';
+export {default as Step6LifestyleScreen} from './Step6Lifestyle';
+export {default as Step7EducationScreen} from './Step7Education';
+export {default as Step8CollegeScreen} from './Step8College';
+export {default as Step9ProfessionScreen} from './Step9Profession';
+export {default as Step10PhotoScreen} from './Step10Photo';

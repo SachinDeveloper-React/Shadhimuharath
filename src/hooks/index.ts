@@ -1,0 +1,1 @@
+export {usePreviousRouteName} from './usePreviousRouteName';
