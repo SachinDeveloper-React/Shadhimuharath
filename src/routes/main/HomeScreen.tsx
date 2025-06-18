@@ -1,16 +1,122 @@
-import {StyleSheet, Text, View} from 'react-native';
+// screens/HomeScreen.tsx
 import React from 'react';
+import {
+  Dimensions,
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  AccessibilityRole,
+} from 'react-native';
+import {CustomButton, GradientText, UpgradeButton} from '../../common';
+import {RightIcon} from '../../assets';
+import {CardItem, MatchCard, ProfileCompletionBanner} from '../../components';
+import {cardListData} from '../../constant/cardListData';
+import {navigate} from '../../services';
 
-type Props = {};
+const CARD_WIDTH = Dimensions.get('window').width;
 
-const HomeScreen = (props: Props) => {
+const HomeScreen: React.FC = () => {
   return (
-    <View>
-      <Text>HomeScreen</Text>
-    </View>
+    <SafeAreaView style={styles.container} accessibilityRole="summary">
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        accessible={true}
+        accessibilityLabel="Main content scroll area"
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.innerContainer}>
+          <UpgradeButton />
+
+          <View style={styles.headerRow} accessibilityRole="header">
+            <Text style={styles.title} accessibilityRole="header">
+              New Matches
+            </Text>
+            <View
+              style={styles.seeAllRow}
+              accessibilityRole="button"
+              accessibilityLabel="See all matches">
+              <GradientText text="See All" colors={['#FF6B6B', '#D93B65']} />
+              <RightIcon />
+            </View>
+          </View>
+
+          <FlatList
+            data={cardListData}
+            keyExtractor={item => item.id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            snapToInterval={CARD_WIDTH - 32}
+            decelerationRate="fast"
+            snapToAlignment="start"
+            accessibilityLabel="List of new matches"
+            accessibilityHint="Swipe left or right to see matches"
+            renderItem={({item}) => (
+              <CardItem {...item} onPress={() => navigate('UserProfile')} />
+            )}
+          />
+
+          <ProfileCompletionBanner />
+
+          <View style={styles.headerRow} accessibilityRole="header">
+            <Text style={styles.title} accessibilityRole="header">
+              Matches
+            </Text>
+            <View
+              style={styles.seeAllRow}
+              accessibilityRole="button"
+              accessibilityLabel="See all matches">
+              <GradientText text="See All" colors={['#FF6B6B', '#D93B65']} />
+              <RightIcon />
+            </View>
+          </View>
+
+          <FlatList
+            data={cardListData}
+            keyExtractor={item => item.id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              gap: 10,
+            }}
+            accessibilityLabel="List of new matches"
+            accessibilityHint="Swipe left or right to see matches"
+            renderItem={({item}) => <MatchCard {...item} />}
+          />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollContainer: {
+    paddingBottom: 20,
+  },
+  innerContainer: {
+    paddingHorizontal: 16,
+  },
+  title: {
+    color: '#8B2729',
+    fontSize: 20,
+    fontWeight: '500',
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 16,
+    marginBottom: 12,
+  },
+  seeAllRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+});

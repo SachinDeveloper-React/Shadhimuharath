@@ -6,7 +6,13 @@ export {
   OtpScreen,
   OtpVerificationScreen,
 } from './auth';
-export {HomeScreen} from './main';
+export {
+  HomeScreen,
+  DiscoverScreen,
+  InboxScreen,
+  ProfileScreen,
+  ChatScreen,
+} from './main';
 export {
   SetupPreferencesScreen,
   SetupProfileScreen,
@@ -21,3 +27,23 @@ export {
   Step9ProfessionScreen,
   Step10PhotoScreen,
 } from './setupProfile';
+
+export {
+  UserProfileScreen,
+  FaqScreen,
+  NotificationScreen,
+  PaymentMethodScreen,
+  PrivacyPolicy,
+  SettingScreen,
+  SubscriptionScreen,
+  UserReviewScreen,
+  AddPaymentMethodScreen,
+  PremiumConfirmationScreen,
+  PersonalInfoScreen,
+  Preferences2Form,
+  Preferences3Form,
+  PreferencesForm,
+  ProfessionalInfo,
+  ProfileInfoForm,
+  ReligionInfoForm,
+} from './others';

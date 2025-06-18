@@ -6,6 +6,7 @@ import {
   Modal,
   StyleSheet,
   Platform,
+  TextStyle,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {ArrowDownIcon} from '../assets';
@@ -17,6 +18,8 @@ type Props = {
   placeholder: string;
   onValueChange: (val: string) => void;
   options: string[];
+  labelStyle?: TextStyle;
+  textStyle?: TextStyle;
 };
 
 const DropdownPicker = ({
@@ -25,17 +28,21 @@ const DropdownPicker = ({
   onValueChange,
   options,
   placeholder,
+  labelStyle,
+  textStyle,
 }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
       {Platform.OS === 'ios' && (
         <TouchableOpacity
           style={styles.dropdown}
           onPress={() => setModalVisible(true)}>
-          <Text style={styles.valueText}>{selectedValue || placeholder}</Text>
+          <Text style={[styles.valueText, textStyle]}>
+            {selectedValue || placeholder}
+          </Text>
           <ArrowDownIcon />
         </TouchableOpacity>
       )}

@@ -9,11 +9,16 @@ export type AuthStackParamList = {
   OtpVerification: undefined;
 };
 
-export type BottomTabParamList = {};
-
-export type MainStackParamList = {
+export type BottomTabParamList = {
   Home: undefined;
+  Discover: undefined;
+  Inbox: undefined;
+  Profile: undefined;
 };
+export type DrawerParamList = {
+  Main: NavigatorScreenParams<BottomTabParamList>;
+};
+
 export type SetupProfileStackParamList = {
   SetupProfile: undefined;
   SetupPreferences: undefined;
@@ -31,6 +36,23 @@ export type SetupProfileStackParamList = {
 export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
   Bottom: NavigatorScreenParams<BottomTabParamList>;
-  Main: NavigatorScreenParams<MainStackParamList>;
+  Drawer: NavigatorScreenParams<DrawerParamList>;
   SetupProfile: NavigatorScreenParams<SetupProfileStackParamList>;
+  Chat: undefined;
+  UserProfile: undefined;
+  UserReview: undefined;
+  Notification: undefined;
+  PaymentMethod: undefined;
+  AddPaymentMethod: undefined;
+  PremiumConfirmation: undefined;
+  Subscription: undefined;
+  Faq: undefined;
+  Setting: undefined;
+  PersonalInfo: undefined;
+  ProfileInfo: undefined;
+  ReligionInfo: undefined;
+  Preferences: undefined;
+  Preferences2: undefined;
+  Preferences3: undefined;
+  ProfessionalInfo: undefined;
 };

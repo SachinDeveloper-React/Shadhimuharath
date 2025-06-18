@@ -10,6 +10,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {SetupProfileStackParamList} from '../../../navigations';
 import {CameraIcon, GallaryIcon} from '../../../assets';
 import {theme} from '../../../constant';
+import {authService} from '../../../services';
 
 type Props = NativeStackScreenProps<SetupProfileStackParamList, 'Step10Photo'>;
 
@@ -70,7 +71,7 @@ const Step10Photo = ({navigation}: Props) => {
             styles.continueButton,
             {paddingBottom: theme.spacing.md + bottom},
           ]}
-          onPress={() => {}}
+          onPress={() => authService.setProfileComplete(true)}
           accessible
           accessibilityRole="button"
           accessibilityLabel="Continue button"
