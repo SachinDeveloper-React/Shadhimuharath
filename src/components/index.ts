@@ -4,6 +4,8 @@ export {
   MatchCard,
   SwipCardItem,
   SwipeableCard,
+  ProfileCard,
+  SubscriptionCard,
   type SwipeableCardRef,
 } from './cards';
 export {default as ProfileCompletionBanner} from './ProfileCompletionBanner';

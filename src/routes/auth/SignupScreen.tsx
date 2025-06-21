@@ -9,6 +9,7 @@ import {
   CustomKeyboardAvoidingView,
 } from '../../common';
 import {LoginLogo, SignupForm} from '../../components/auth';
+import {navigate} from '../../services';
 
 const SignupScreen = ({
   navigation,
@@ -35,7 +36,17 @@ const SignupScreen = ({
           onChangePhoneNumber={text => setForm({...form, phoneNo: text})}
           onLoginPress={() => navigation.navigate('Login')}
         />
-        <CustomButton title="Sign Up" />
+        <CustomButton
+          title="Sign Up"
+          style={{
+            paddingBottom: StatusBar.currentHeight,
+          }}
+          onPress={() =>
+            navigate('Auth', {
+              screen: 'Otp',
+            })
+          }
+        />
       </CustomKeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -52,6 +63,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     paddingHorizontal: theme.spacing.xl,
-    paddingVertical: theme.spacing.lg,
+    paddingVertical: StatusBar.currentHeight,
   },
 });

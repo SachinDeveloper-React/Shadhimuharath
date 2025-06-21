@@ -12,6 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {CustomButton} from '../../common';
 import {navigate} from '../../services';
+import {SubscriptionCard} from '../../components';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('window');
 
@@ -44,12 +45,7 @@ const SubscriptionScreen = () => {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{padding: 16}}>
-          <Image
-            source={require('../../assets/subscription.png')}
-            style={{
-              width: SCREEN_WIDTH - 32,
-            }}
-          />
+          <SubscriptionCard />
         </View>
         <View style={styles.tabRow}>
           {plans.map((plan, index) => {

@@ -58,6 +58,9 @@ const OtpScreen = ({
         <CustomButton
           title="Verify OTP"
           onPress={() => navigation.navigate('OtpVerification')}
+          style={{
+            paddingBottom: StatusBar.currentHeight,
+          }}
         />
       </CustomKeyboardAvoidingView>
     </SafeAreaView>

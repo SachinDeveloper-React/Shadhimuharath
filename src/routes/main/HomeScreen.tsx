@@ -1,4 +1,3 @@
-// screens/HomeScreen.tsx
 import React from 'react';
 import {
   Dimensions,
@@ -8,11 +7,15 @@ import {
   StyleSheet,
   Text,
   View,
-  AccessibilityRole,
 } from 'react-native';
-import {CustomButton, GradientText, UpgradeButton} from '../../common';
+import {GradientText, UpgradeButton} from '../../common';
 import {RightIcon} from '../../assets';
-import {CardItem, MatchCard, ProfileCompletionBanner} from '../../components';
+import {
+  CardItem,
+  MatchCard,
+  ProfileCard,
+  ProfileCompletionBanner,
+} from '../../components';
 import {cardListData} from '../../constant/cardListData';
 import {navigate} from '../../services';
 
@@ -27,6 +30,7 @@ const HomeScreen: React.FC = () => {
         accessibilityLabel="Main content scroll area"
         showsVerticalScrollIndicator={false}>
         <View style={styles.innerContainer}>
+          <ProfileCard />
           <UpgradeButton />
 
           <View style={styles.headerRow} accessibilityRole="header">
@@ -95,12 +99,14 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   scrollContainer: {
     paddingBottom: 20,
   },
   innerContainer: {
     paddingHorizontal: 16,
+    backgroundColor: '#fff',
   },
   title: {
     color: '#8B2729',

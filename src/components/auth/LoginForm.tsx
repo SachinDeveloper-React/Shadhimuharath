@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -53,7 +54,13 @@ const LoginForm = (props: Props) => {
         </View>
       </View>
 
-      <CustomButton title="Login" onPress={onLoginHandle} />
+      <CustomButton
+        title="Login"
+        onPress={onLoginHandle}
+        style={{
+          paddingBottom: StatusBar.currentHeight,
+        }}
+      />
     </View>
   );
 };

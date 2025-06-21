@@ -1,16 +1,9 @@
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {profileList, theme} from '../../constant';
 import {authService, navigate} from '../../services';
 import {CustomButton} from '../../common';
-import {CustomOptionItem} from '../../components';
+import {CustomOptionItem, ProfileCard} from '../../components';
 
 const ProfileScreen = () => {
   const isLogin = true;
@@ -18,23 +11,10 @@ const ProfileScreen = () => {
   const renderHeader = () => (
     <View>
       {isLogin ? (
-        <View style={styles.profileCard}>
-          <Image
-            source={{
-              uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=3087',
-            }}
-            resizeMode="cover"
-            style={styles.avatar}
-          />
-          <View style={{flexDirection: 'column', gap: 4}}>
-            <Text style={styles.whiteText}>Samantha John</Text>
-            <View>
-              <Text style={styles.addressText}>
-                H-70, Sector 63, Noida, U.P
-              </Text>
-            </View>
-          </View>
-        </View>
+        <ProfileCard
+          pregressActive={false}
+          source={require('../../assets/profile.png')}
+        />
       ) : (
         <View style={styles.logoutprofileCard}>
           <Text style={styles.whiteText}>You are not sign in!</Text>
@@ -106,7 +86,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: 16,
     paddingHorizontal: 16,
     backgroundColor: '#fff',
   },
