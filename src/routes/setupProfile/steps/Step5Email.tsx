@@ -83,7 +83,7 @@ const Step5Email = ({
         <CustomButton
           title="Continue"
           onPress={() => navigation.navigate('Step6Lifestyle')}
-          style={{paddingVertical: theme.spacing.md}}
+          style={{paddingBottom: StatusBar.currentHeight}}
           accessible
           accessibilityRole="button"
           accessibilityLabel="Continue button"
@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.white,
-    paddingTop: theme.spacing.md,
   },
   mainContainer: {
     flex: 1,
@@ -110,6 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     paddingHorizontal: theme.spacing.xl,
+    paddingVertical: StatusBar.currentHeight,
   },
   headerTitle: {
     fontSize: theme.text.fontSize.sm,

@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
   },
   row: {
+    width: CARD_WIDTH - (48 + 16 + 12),
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,

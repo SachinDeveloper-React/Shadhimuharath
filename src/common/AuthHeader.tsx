@@ -15,6 +15,7 @@ type Props = TouchableOpacityProps & {
   right?: React.ReactNode;
   isTitle?: boolean;
   rightTitle?: string;
+  iconColor?: string;
 };
 
 const AuthHeader = ({
@@ -22,6 +23,7 @@ const AuthHeader = ({
   right,
   rightTitle,
   isTitle = true,
+  iconColor,
   ...props
 }: Props) => {
   return (
@@ -31,7 +33,12 @@ const AuthHeader = ({
       accessibilityRole="header"
       importantForAccessibility="yes">
       <TouchableOpacity
-        style={styles.backButton}
+        style={[
+          styles.backButton,
+          {
+            borderColor: iconColor || theme.colors.inactive,
+          },
+        ]}
         activeOpacity={0.8}
         onPress={onPress}
         accessibilityRole="button"
@@ -39,7 +46,7 @@ const AuthHeader = ({
         accessibilityHint="Navigates to the previous screen"
         importantForAccessibility="yes"
         {...props}>
-        <ArrowleftIcon />
+        <ArrowleftIcon color={iconColor} />
       </TouchableOpacity>
 
       {isTitle && (
@@ -68,7 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: Platform.OS === 'ios' ? 0 : 10,
+    // marginVertical: Platform.OS === 'ios' ? 0 : 20,
   },
   backButton: {
     borderWidth: 1,

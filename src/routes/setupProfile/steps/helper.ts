@@ -172,6 +172,10 @@ export const profileOptionsData = [
 
 export const educationData = [
   {
+    qualification: 'Select',
+    colleges: [],
+  },
+  {
     qualification: 'High School',
     colleges: ['N/A'],
   },

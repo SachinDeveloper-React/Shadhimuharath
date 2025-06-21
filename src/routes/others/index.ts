@@ -9,6 +9,7 @@ export {default as FaqScreen} from './FaqScreen';
 export {default as SubscriptionScreen} from './SubscriptionScreen';
 export {default as PremiumConfirmationScreen} from './PremiumConfirmationScreen';
 export {default as PersonalInfoScreen} from './PersonalInfoScreen';
+export {default as ShortListScreen} from './ShortListScreen';
 export {
   Preferences2Form,
   Preferences3Form,

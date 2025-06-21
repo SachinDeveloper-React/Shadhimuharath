@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {CustomButton} from '../../common';
 import {CongratulationsIcon} from '../../assets';
@@ -24,39 +31,47 @@ const PremiumConfirmationScreen = () => {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}>
-        <View style={styles.iconContainer}>
-          <CongratulationsIcon />
-        </View>
-
-        <Text style={styles.heading}>Congratulations!</Text>
-        <Text style={styles.subheading}>
-          You’re Now a Shadi Muharat Premium Member!
-        </Text>
-
-        <View style={styles.divider} />
-
-        <Text style={styles.benefitsTitle}>Benefits Unlocked:</Text>
-        {benefits.map((benefit, index) => (
-          <View style={styles.benefitItem} key={index}>
-            <Icon name="check" size={20} color="#C84A35" />
-            <Text style={styles.benefitText}>{benefit}</Text>
-          </View>
-        ))}
-
-        <View style={styles.divider} />
-
-        <Text style={styles.infoText}>
-          Your subscription will automatically renew unless cancelled. Manage
-          your subscription in your account settings.
-        </Text>
-
-        <CustomButton
-          title="Start Exploring Premium Features"
+        <View
           style={{
-            width: '100%',
-          }}
-          onPress={() => navigate('Drawer')}
-        />
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginVertical: StatusBar?.currentHeight,
+          }}>
+          <View style={styles.iconContainer}>
+            <CongratulationsIcon />
+          </View>
+
+          <Text style={styles.heading}>Congratulations!</Text>
+          <Text style={styles.subheading}>
+            You’re Now a Shadi Muharat Premium Member!
+          </Text>
+
+          <View style={styles.divider} />
+
+          <Text style={styles.benefitsTitle}>Benefits Unlocked:</Text>
+          {benefits.map((benefit, index) => (
+            <View style={styles.benefitItem} key={index}>
+              <Icon name="check" size={20} color="#C84A35" />
+              <Text style={styles.benefitText}>{benefit}</Text>
+            </View>
+          ))}
+
+          <View style={styles.divider} />
+
+          <Text style={styles.infoText}>
+            Your subscription will automatically renew unless cancelled. Manage
+            your subscription in your account settings.
+          </Text>
+
+          <CustomButton
+            title="Start Exploring Premium Features"
+            style={{
+              width: '100%',
+            }}
+            onPress={() => navigate('Drawer')}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -72,7 +87,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     padding: 24,
     alignItems: 'center',
-    paddingBottom: 60,
+    // paddingBottom: 60,
   },
   iconContainer: {
     // marginTop: 20,

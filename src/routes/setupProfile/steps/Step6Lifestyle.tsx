@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 import {
   AuthHeader,
   CustomButton,
@@ -31,7 +31,7 @@ const Step2Community = ({
             onPress={() => navigation.goBack()}
             right={
               <CustomCircularProgressBar
-                progress={10}
+                progress={50}
                 radius={30}
                 strokeWidth={6}
               />
@@ -53,7 +53,6 @@ const Step2Community = ({
         <CustomButton
           title="Continue"
           onPress={() => navigation.navigate('Step7Education')}
-          style={{paddingVertical: theme.spacing.md}}
           accessible
           accessibilityRole="button"
           accessibilityLabel="Continue button"
@@ -70,12 +69,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: theme.spacing.md,
   },
   innerContainer: {
     flex: 1,
     paddingHorizontal: 16,
     justifyContent: 'space-between',
+    paddingVertical: StatusBar.currentHeight,
   },
   formGroup: {
     gap: 20,

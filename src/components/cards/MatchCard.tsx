@@ -1,5 +1,12 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View, Image} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Platform,
+} from 'react-native';
 import {LocationIcon} from '../../assets';
 import LinearGradient from 'react-native-linear-gradient';
 import {theme} from '../../constant';
@@ -23,7 +30,7 @@ const MatchCard: React.FC<CardItemProps> = ({
     <View accessibilityHint="card">
       <LinearGradient
         colors={[theme.colors.primary, theme.colors.secondary]}
-        style={{borderRadius: 16}}>
+        style={{borderRadius: 16, padding: Platform.OS === 'android' ? 16 : 0}}>
         <Image source={{uri: image}} style={styles.card} resizeMode="cover" />
         <OverlayContent {...{name, age, height, location}} />
       </LinearGradient>
@@ -37,12 +44,19 @@ const OverlayContent = ({
   height,
   location,
 }: Omit<CardItemProps, 'image'>) => (
-  <View style={{paddingHorizontal: 16, paddingBottom: 16, width: CARD_WIDTH}}>
+  <View
+    style={{
+      paddingHorizontal: Platform.OS === 'ios' ? 16 : 0,
+      paddingBottom: Platform.OS === 'ios' ? 16 : 0,
+      paddingVertical: Platform.OS === 'ios' ? 0 : 16,
+      width: CARD_WIDTH,
+    }}>
     <View
       style={[
         styles.row,
         {
           justifyContent: 'space-between',
+          // paddingVertical: 10,
         },
       ]}>
       <Text style={styles.name}>{name}</Text>

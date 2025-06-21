@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   StatusBar,
+  Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {theme} from '../../../constant';
@@ -54,8 +55,29 @@ const Step1Profile = ({
             start={{x: 0, y: 0.5}}
             end={{x: 1, y: 0.5}}
             colors={[theme.colors.secondary, theme.colors.primary]}
-            style={styles.selectedButton}>
-            <Text style={styles.selectedText}>{label}</Text>
+            style={[
+              {
+                ...Platform.select({
+                  ios: {
+                    alignItems: 'center',
+                    borderRadius: theme.radius.sm + 2,
+                  },
+                  android: {
+                    ...styles.selectedButton,
+                  },
+                }),
+              },
+            ]}>
+            <Text
+              style={[
+                styles.selectedText,
+                {
+                  paddingVertical:
+                    Platform.OS === 'android' ? 0 : theme.spacing.sm,
+                },
+              ]}>
+              {label}
+            </Text>
           </LinearGradient>
         ) : (
           <View style={styles.unselectedButton}>
@@ -117,7 +139,6 @@ const Step1Profile = ({
           <CustomButton
             title="Continue"
             onPress={() => navigation.navigate('Step2Community')}
-            style={{paddingVertical: theme.spacing.md}}
             accessible
             accessibilityRole="button"
             accessibilityLabel="Continue button"
@@ -134,15 +155,13 @@ export default Step1Profile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: theme.spacing.md,
-    paddingTop: theme.spacing.md,
     backgroundColor: theme.colors.white,
   },
   innercontainer: {
     flex: 1,
     paddingHorizontal: 16,
-    // paddingTop: 16,
     backgroundColor: theme.colors.white,
+    paddingVertical: StatusBar.currentHeight,
   },
   title: {
     fontSize: theme.text.fontSize.lg,
@@ -156,23 +175,20 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   selectedButton: {
-    borderRadius: theme.radius.sm + 2,
-    // paddingVertical: 12,
+    paddingVertical: theme.spacing.sm,
     alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: theme.radius.sm + 2,
   },
   unselectedButton: {
     paddingVertical: theme.spacing.sm,
-    borderRadius: theme.radius.md,
-    borderWidth: 1.5,
+    borderWidth: 0.5,
     borderColor: theme.colors.primary,
     alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: theme.radius.sm + 2,
   },
   selectedText: {
     color: theme.colors.white,
     fontWeight: theme.text.fontWeight.semiBold,
-    paddingVertical: theme.spacing.md,
   },
   unselectedText: {
     color: theme.colors.primary,

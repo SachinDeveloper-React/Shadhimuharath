@@ -106,11 +106,13 @@ const Step4BasicInfo = ({
         <CustomButton
           title="Continue"
           onPress={() => navigation.navigate('Step5Email')}
-          style={{paddingVertical: theme.spacing.md}}
           accessible
           accessibilityRole="button"
           accessibilityLabel="Continue button"
           accessibilityHint="Goes to the next step"
+          style={{
+            paddingBottom: StatusBar.currentHeight,
+          }}
         />
       </CustomKeyboardAvoidingView>
     </SafeAreaView>
@@ -123,7 +125,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: theme.spacing.md,
   },
   mainContainer: {
     flex: 1,
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     paddingHorizontal: theme.spacing.xl,
+    paddingVertical: StatusBar.currentHeight,
   },
   label: {
     marginTop: 20,

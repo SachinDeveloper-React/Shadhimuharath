@@ -2,22 +2,22 @@ import React, {useRef, useState} from 'react';
 import {
   Dimensions,
   FlatList,
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {cardListData} from '../../constant/cardListData';
 import {useSharedValue} from 'react-native-reanimated';
-import SwipeableCard, {
-  SwipeableCardRef,
-} from '../../components/cards/SwipeableCard';
+
 import {GradientText} from '../../common';
-import {RightIcon} from '../../assets';
-import {MatchCard} from '../../components';
+import {NegativeIcon, PositiveIcon, RightIcon, SearchIcon} from '../../assets';
+import {MatchCard, SwipeableCard, SwipeableCardRef} from '../../components';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const MAX_VISIBLE_CARDS = 3;
@@ -26,7 +26,12 @@ const DiscoverScreen = () => {
   const [newData, setNewData] = useState([...cardListData, ...cardListData]);
   const cardRef = useRef<SwipeableCardRef>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [search, setSearch] = useState('');
   const animatedValue = useSharedValue(0);
+
+  const handleSearch = (text: string) => {
+    setSearch(text);
+  };
 
   return (
     <GestureHandlerRootView style={styles.flexContainer}>
@@ -34,6 +39,19 @@ const DiscoverScreen = () => {
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}>
+          <View style={styles.searchFilterRow}>
+            <View style={styles.searchInput}>
+              <SearchIcon width={18} height={18} />
+              <TextInput
+                placeholder="Search"
+                style={styles.input}
+                value={search}
+                onChangeText={handleSearch}
+                placeholderTextColor="#888"
+              />
+            </View>
+          </View>
+
           <View style={styles.cardContainer}>
             {newData.map((item, index) => {
               if (
@@ -67,30 +85,8 @@ const DiscoverScreen = () => {
                 alignItems: 'center',
                 justifyContent: 'space-around',
               }}>
-              <TouchableOpacity
-                onPress={() => cardRef?.current?.swipeLeft()}
-                style={{
-                  width: 60,
-                  height: 60,
-                  backgroundColor: '#000',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 30,
-                }}>
-                <AntDesign name="close" color={'#fff'} size={30} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => cardRef?.current?.swipeRight()}
-                style={{
-                  width: 60,
-                  height: 60,
-                  backgroundColor: '#000',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 30,
-                }}>
-                <AntDesign name="heart" color={'#fff'} size={30} />
-              </TouchableOpacity>
+              <NegativeIcon onPress={() => cardRef?.current?.swipeLeft()} />
+              <PositiveIcon onPress={() => cardRef?.current?.swipeRight()} />
             </View>
 
             <View style={styles.headerRow} accessibilityRole="header">
@@ -159,5 +155,41 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+  },
+  searchFilterRow: {
+    // flexDirection: 'row',
+    marginTop: 26,
+    marginHorizontal: 16,
+    // alignItems: 'center',
+  },
+  searchInput: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    paddingHorizontal: 12,
+    paddingVertical: Platform.OS === 'ios' ? 10 : 0,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#D69892',
+  },
+  input: {
+    marginLeft: 8,
+    flex: 1,
+    fontSize: 14,
+    color: '#333',
+  },
+  filterBtn: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+  filterText: {
+    fontSize: 14,
+    marginLeft: 6,
+    color: '#333',
   },
 });

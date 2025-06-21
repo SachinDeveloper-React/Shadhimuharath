@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {CustomButton} from '../../common';
@@ -55,23 +56,19 @@ const PaymentMethodItem = ({item}: {item: (typeof paymentMethods)[0]}) => (
 
 const PaymentMethodScreen = () => {
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        {
-          padding: 0,
-        },
-      ]}>
-      <View style={styles.container}>
+    <SafeAreaView style={[styles.container]}>
+      <View style={{flex: 1, paddingHorizontal: 16, paddingTop: 16}}>
         <FlatList
           data={paymentMethods}
           keyExtractor={item => item.id}
           renderItem={({item}) => <PaymentMethodItem item={item} />}
-          contentContainerStyle={{paddingBottom: 20}}
         />
         <CustomButton
           title="Add Payment Method"
           onPress={() => navigate('AddPaymentMethod')}
+          style={{
+            paddingBottom: StatusBar?.currentHeight,
+          }}
         />
       </View>
     </SafeAreaView>
@@ -84,7 +81,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 16,
   },
   card: {
     backgroundColor: '#fff0f0',

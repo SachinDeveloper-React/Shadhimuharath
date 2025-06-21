@@ -20,6 +20,7 @@ import {
   ProfileInfoForm,
   ReligionInfoForm,
   SettingScreen,
+  ShortListScreen,
   SubscriptionScreen,
   UserProfileScreen,
   UserReviewScreen,
@@ -76,6 +77,17 @@ const AppNavigator = () => {
               headerTintColor: '#4F1617',
             }}
             component={NotificationScreen}
+          />
+          <RootStack.Screen
+            name="ShortList"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: 'Shortlist',
+              headerTitleAlign: 'left',
+              headerTintColor: '#4F1617',
+            }}
+            component={ShortListScreen}
           />
           <RootStack.Screen
             name="PaymentMethod"
@@ -161,7 +173,7 @@ const AppNavigator = () => {
             options={{
               headerShown: true,
               headerBackButtonDisplayMode: 'minimal',
-              headerTitle: 'Setting',
+              headerTitle: 'Religion Info',
               headerTitleAlign: 'left',
               headerTintColor: '#4F1617',
             }}

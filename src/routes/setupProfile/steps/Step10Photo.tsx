@@ -1,5 +1,13 @@
-import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Alert,
+  Image,
+  Platform,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {
   AuthHeader,
   CustomButton,
@@ -11,11 +19,31 @@ import {SetupProfileStackParamList} from '../../../navigations';
 import {CameraIcon, GallaryIcon} from '../../../assets';
 import {theme} from '../../../constant';
 import {authService} from '../../../services';
+import {mediaPickerService} from '../../../utils/mediaPickerService';
+import {Asset} from 'react-native-image-picker';
 
 type Props = NativeStackScreenProps<SetupProfileStackParamList, 'Step10Photo'>;
 
 const Step10Photo = ({navigation}: Props) => {
   const {top, bottom} = useSafeAreaInsets();
+  const [profilePhoto, setProfilePhoto] = useState<Asset | null>(null);
+  const handleCamera = async () => {
+    try {
+      const asset = await mediaPickerService.pickFromCamera();
+      if (asset) setProfilePhoto(asset);
+    } catch (err) {
+      Alert.alert('Camera error', err as string);
+    }
+  };
+
+  const handleGallery = async () => {
+    try {
+      const asset = await mediaPickerService.pickFromGallery();
+      if (asset) setProfilePhoto(asset);
+    } catch (err) {
+      Alert.alert('Gallery error', err as string);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -27,8 +55,16 @@ const Step10Photo = ({navigation}: Props) => {
             resizeMode="cover"
           />
 
-          <View style={[styles.headerOverlay, {top}]}>
+          <View
+            style={[
+              styles.headerOverlay,
+              {
+                paddingVertical:
+                  Platform.OS === 'ios' ? top : StatusBar.currentHeight,
+              },
+            ]}>
             <AuthHeader
+              iconColor={theme.colors.white}
               onPress={() => navigation.goBack()}
               right={
                 <CustomCircularProgressBar
@@ -46,7 +82,15 @@ const Step10Photo = ({navigation}: Props) => {
           </View>
 
           <View style={styles.photoPlaceholderBorder}>
-            <View style={styles.photoPlaceholder} />
+            {/* <View style={styles.photoPlaceholder} /> */}
+            {profilePhoto ? (
+              <Image
+                source={{uri: profilePhoto.uri}}
+                style={styles.photoPlaceholder}
+              />
+            ) : (
+              <View style={styles.photoPlaceholder} />
+            )}
           </View>
 
           <View style={styles.textWrapper}>
@@ -60,8 +104,8 @@ const Step10Photo = ({navigation}: Props) => {
           </View>
 
           <View style={styles.iconRow}>
-            <CameraIcon />
-            <GallaryIcon />
+            <CameraIcon onPress={handleCamera} />
+            <GallaryIcon onPress={handleGallery} />
           </View>
         </View>
 
@@ -69,7 +113,10 @@ const Step10Photo = ({navigation}: Props) => {
           title="Continue"
           style={[
             styles.continueButton,
-            {paddingBottom: theme.spacing.md + bottom},
+            {
+              paddingBottom:
+                Platform.OS === 'ios' ? bottom : StatusBar.currentHeight,
+            },
           ]}
           onPress={() => authService.setProfileComplete(true)}
           accessible

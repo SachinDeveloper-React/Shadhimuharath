@@ -8,6 +8,7 @@ import {
   Keyboard,
   ScrollView,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {CustomDropdownPicker, CustomButton} from '../../../common';
@@ -98,7 +99,13 @@ const Preferences3Form = () => {
             </ScrollView>
 
             <View
-              style={[styles.buttonContainer, {paddingBottom: bottom || 16}]}>
+              style={[
+                styles.buttonContainer,
+                {
+                  paddingBottom:
+                    Platform.OS === 'ios' ? 0 : StatusBar?.currentHeight,
+                },
+              ]}>
               <CustomButton title="Done" onPress={() => navigate('Drawer')} />
             </View>
           </View>
@@ -121,7 +128,6 @@ const styles = StyleSheet.create({
   container: {
     padding: theme.spacing.md,
     gap: 18,
-    paddingBottom: 32,
   },
   label: {
     fontSize: 26,

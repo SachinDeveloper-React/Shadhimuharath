@@ -42,6 +42,7 @@ export type RootStackParamList = {
   UserProfile: undefined;
   UserReview: undefined;
   Notification: undefined;
+  ShortList: undefined;
   PaymentMethod: undefined;
   AddPaymentMethod: undefined;
   PremiumConfirmation: undefined;

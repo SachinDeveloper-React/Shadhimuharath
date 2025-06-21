@@ -46,4 +46,5 @@ export {
   ProfessionalInfo,
   ProfileInfoForm,
   ReligionInfoForm,
+  ShortListScreen,
 } from './others';

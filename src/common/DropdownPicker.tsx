@@ -7,12 +7,13 @@ import {
   StyleSheet,
   Platform,
   TextStyle,
+  ViewProps,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {ArrowDownIcon} from '../assets';
 import {theme} from '../constant';
 
-type Props = {
+type Props = ViewProps & {
   label?: string;
   selectedValue: string;
   placeholder: string;
@@ -30,11 +31,12 @@ const DropdownPicker = ({
   placeholder,
   labelStyle,
   textStyle,
+  ...props
 }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <View>
+    <View {...props}>
       {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
       {Platform.OS === 'ios' && (
         <TouchableOpacity
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
   },
   androidPickerWrapper: {
     borderWidth: 1.5,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.inactive,
     borderRadius: theme.radius.md,
     overflow: 'hidden',
   },

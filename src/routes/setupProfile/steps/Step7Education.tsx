@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 import {
   AuthHeader,
   CustomButton,
@@ -20,7 +20,7 @@ const Step7Education = ({
     setFormData(prev => ({
       ...prev,
       [key]: value,
-      ...(key === 'Highest Qualification' ? {College: ''} : {}), // Reset college if qualification changes
+      ...(key === 'Highest Qualification' ? {College: ''} : {}),
     }));
   };
 
@@ -37,7 +37,7 @@ const Step7Education = ({
             onPress={() => navigation.goBack()}
             right={
               <CustomCircularProgressBar
-                progress={10}
+                progress={60}
                 radius={30}
                 strokeWidth={6}
               />
@@ -54,7 +54,7 @@ const Step7Education = ({
             placeholder="Select your highest qualification"
           />
 
-          {selectedQualification !== '' && (
+          {selectedQualification !== null && (
             <CustomDropdownPicker
               label="College"
               selectedValue={formData['College'] || ''}
@@ -68,7 +68,6 @@ const Step7Education = ({
         <CustomButton
           title="Continue"
           onPress={() => navigation.navigate('Step9Profession')}
-          style={{paddingVertical: theme.spacing.md}}
           accessible
           accessibilityRole="button"
           accessibilityLabel="Continue button"
@@ -85,12 +84,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: theme.spacing.md,
   },
   innerContainer: {
     flex: 1,
     paddingHorizontal: 16,
     justifyContent: 'space-between',
+    paddingVertical: StatusBar.currentHeight,
   },
   formGroup: {
     gap: 20,

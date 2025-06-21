@@ -31,7 +31,7 @@ export const profileList = [
         title: 'Shortlisted',
         leftIcon: ShortlistIcon,
         rightIcon: RightIcon,
-        navigation: 'Shortlisted',
+        navigation: 'ShortList',
       },
       {
         id: 2,
@@ -90,7 +90,7 @@ export const profileList = [
         title: 'Log out',
         leftIcon: LogoutIcon,
         rightIcon: RightIcon,
-        navigation: '',
+        navigation: 'Logout',
       },
     ],
   },

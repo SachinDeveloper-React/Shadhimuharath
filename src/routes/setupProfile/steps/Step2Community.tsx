@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 import {
   AuthHeader,
   CustomButton,
@@ -11,7 +11,6 @@ import {SetupProfileStackParamList} from '../../../navigations';
 import {getCommunityOptions, getSubCommunityOptions} from '../../../utils';
 import {religionData} from './helper';
 import CommunityNote from '../components/CommunityNote';
-import {theme} from '../../../constant';
 
 const Step2Community = ({
   navigation,
@@ -19,28 +18,25 @@ const Step2Community = ({
   const [selectedReligion, setSelectedReligion] = useState('Hindu');
   const [selectedCommunity, setSelectedCommunity] = useState('Brahmin');
   const [selectedSubCommunity, setSelectedSubCommunity] = useState('Gaur');
-
-  const communityOptions = getCommunityOptions(religionData, selectedReligion);
-  const subCommunityOptions = getSubCommunityOptions(
-    religionData,
-    selectedReligion,
-    selectedCommunity,
+  const [communityNoBar, setCommunityNoBar] = useState(true);
+  const communityOptions = useMemo(
+    () => getCommunityOptions(religionData, selectedReligion),
+    [selectedReligion],
   );
+
+  const subCommunityOptions = useMemo(
+    () =>
+      getSubCommunityOptions(religionData, selectedReligion, selectedCommunity),
+    [selectedReligion, selectedCommunity],
+  );
+
+  const isFormValid =
+    !!selectedReligion && !!selectedCommunity && !!selectedSubCommunity;
 
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          flex: 1,
-          paddingHorizontal: 16,
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-        }}>
-        <View
-          style={{
-            flexDirection: 'column',
-            gap: 20,
-          }}>
+      <View style={styles.innerContainer}>
+        <View style={styles.formWrapper}>
           <AuthHeader
             onPress={() => navigation.goBack()}
             right={
@@ -62,6 +58,8 @@ const Step2Community = ({
             }}
             options={religionData.map(r => r.name)}
             placeholder="Your Religion"
+            accessibilityLabel="Select your religion"
+            accessibilityHint="Opens dropdown to choose your religion"
           />
 
           <CustomDropdownPicker
@@ -73,6 +71,8 @@ const Step2Community = ({
             }}
             options={communityOptions}
             placeholder="Your Community"
+            accessibilityLabel="Select your community"
+            accessibilityHint="Opens dropdown to choose your community"
           />
 
           <CustomDropdownPicker
@@ -81,13 +81,20 @@ const Step2Community = ({
             onValueChange={setSelectedSubCommunity}
             options={subCommunityOptions}
             placeholder="Your Sub-Community"
+            accessibilityLabel="Select your sub-community"
+            accessibilityHint="Opens dropdown to choose your sub-community"
           />
-          <CommunityNote />
+
+          <CommunityNote
+            selected={communityNoBar}
+            onPress={() => setCommunityNoBar(prev => !prev)}
+          />
         </View>
+
         <CustomButton
           title="Continue"
           onPress={() => navigation.navigate('Step3Location')}
-          style={{paddingVertical: theme.spacing.md}}
+          disabled={!isFormValid}
           accessible
           accessibilityRole="button"
           accessibilityLabel="Continue button"
@@ -104,12 +111,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: theme.spacing.md,
   },
-  title: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginVertical: 20,
-    color: '#5a0c0c',
+  innerContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    paddingVertical: StatusBar.currentHeight,
+  },
+  formWrapper: {
+    flexDirection: 'column',
+    gap: 20,
   },
 });

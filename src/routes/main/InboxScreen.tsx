@@ -104,7 +104,7 @@ const InboxScreen = () => {
         placeholderTextColor="#D69892"
         style={styles.searchInput}
       />
-      <SearchIcon />
+      <SearchIcon width={18} height={18} />
     </View>
   );
 

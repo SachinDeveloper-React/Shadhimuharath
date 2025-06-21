@@ -8,6 +8,8 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  StatusBar,
+  SafeAreaView,
 } from 'react-native';
 import {
   educationData,
@@ -37,124 +39,120 @@ const ProfessionalInfo = (props: Props) => {
       ?.colleges ?? [];
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.select({ios: 'padding', android: undefined})}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.innerContainer}>
-          <ScrollView
-            contentContainerStyle={styles.scrollContent}
-            keyboardShouldPersistTaps="handled">
-            <View style={styles.row}>
-              <View style={styles.half}>
-                <CustomDropdownPicker
-                  label="Highest Qualification"
-                  selectedValue={selectedQualification || ''}
-                  onValueChange={val =>
-                    handleValueChange('Highest Qualification', val)
-                  }
-                  options={educationData.map(item => item.qualification)}
-                  placeholder="Select"
-                  labelStyle={styles.label}
-                  textStyle={styles.text}
-                />
-              </View>
-              <View style={styles.half}>
-                <CustomDropdownPicker
-                  label="College"
-                  selectedValue={formData['College'] || ''}
-                  onValueChange={val => handleValueChange('College', val)}
-                  options={selectedCollegeList}
-                  placeholder="Select"
-                  labelStyle={styles.label}
-                  textStyle={styles.text}
-                />
-              </View>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+      <View style={styles.innerContainer}>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled">
+          <View style={styles.row}>
+            <View style={styles.half}>
+              <CustomDropdownPicker
+                label="Highest Qualification"
+                selectedValue={selectedQualification || ''}
+                onValueChange={val =>
+                  handleValueChange('Highest Qualification', val)
+                }
+                options={educationData.map(item => item.qualification)}
+                placeholder="Select"
+                labelStyle={styles.label}
+                textStyle={styles.text}
+              />
             </View>
+            <View style={styles.half}>
+              <CustomDropdownPicker
+                label="College"
+                selectedValue={formData['College'] || ''}
+                onValueChange={val => handleValueChange('College', val)}
+                options={selectedCollegeList}
+                placeholder="Select"
+                labelStyle={styles.label}
+                textStyle={styles.text}
+              />
+            </View>
+          </View>
 
-            <View style={styles.row}>
-              <View style={styles.half}>
-                {profileAnnualIncomeData.map(item => (
-                  <CustomDropdownPicker
-                    key={item.category}
-                    label={item.category}
-                    selectedValue={formData[item.category] || ''}
-                    onValueChange={val => handleValueChange(item.category, val)}
-                    options={item.options}
-                    placeholder="Select"
-                    labelStyle={styles.label}
-                    textStyle={styles.text}
-                  />
-                ))}
-              </View>
-              <View style={styles.half}>
+          <View style={styles.row}>
+            <View style={styles.half}>
+              {profileAnnualIncomeData.map(item => (
                 <CustomDropdownPicker
-                  label="Work Sector"
-                  selectedValue={formData['Work Sector'] || ''}
-                  onValueChange={val => handleValueChange('Work Sector', val)}
-                  options={['Select', 'Private', 'Govt']}
+                  key={item.category}
+                  label={item.category}
+                  selectedValue={formData[item.category] || ''}
+                  onValueChange={val => handleValueChange(item.category, val)}
+                  options={item.options}
                   placeholder="Select"
                   labelStyle={styles.label}
                   textStyle={styles.text}
                 />
-              </View>
+              ))}
             </View>
+            <View style={styles.half}>
+              <CustomDropdownPicker
+                label="Work Sector"
+                selectedValue={formData['Work Sector'] || ''}
+                onValueChange={val => handleValueChange('Work Sector', val)}
+                options={['Select', 'Private', 'Govt']}
+                placeholder="Select"
+                labelStyle={styles.label}
+                textStyle={styles.text}
+              />
+            </View>
+          </View>
 
+          <CustomDropdownPicker
+            label="Profile"
+            selectedValue={formData['Profile'] || ''}
+            onValueChange={val => handleValueChange('Profile', val)}
+            options={[
+              'Select',
+              'Software Engineer',
+              'Manager',
+              'Team Lead',
+              'Analyst',
+              'Consultant',
+              'Director',
+              'CEO/Founder',
+              'Other',
+            ]}
+            placeholder="Select"
+            labelStyle={styles.label}
+            textStyle={styles.text}
+          />
+          <View style={{marginTop: 16}}>
             <CustomDropdownPicker
-              label="Profile"
-              selectedValue={formData['Profile'] || ''}
-              onValueChange={val => handleValueChange('Profile', val)}
+              label="Company Name"
+              selectedValue={formData['Company Name'] || ''}
+              onValueChange={val => handleValueChange('Company Name', val)}
               options={[
                 'Select',
-                'Software Engineer',
-                'Manager',
-                'Team Lead',
-                'Analyst',
-                'Consultant',
-                'Director',
-                'CEO/Founder',
+                'TCS',
+                'Infosys',
+                'Google',
+                'Amazon',
+                'Microsoft',
+                'Government of India',
+                'Self-employed',
                 'Other',
               ]}
               placeholder="Select"
               labelStyle={styles.label}
               textStyle={styles.text}
             />
-            <View style={{marginTop: 16}}>
-              <CustomDropdownPicker
-                label="Company Name"
-                selectedValue={formData['Company Name'] || ''}
-                onValueChange={val => handleValueChange('Company Name', val)}
-                options={[
-                  'Select',
-                  'TCS',
-                  'Infosys',
-                  'Google',
-                  'Amazon',
-                  'Microsoft',
-                  'Government of India',
-                  'Self-employed',
-                  'Other',
-                ]}
-                placeholder="Select"
-                labelStyle={styles.label}
-                textStyle={styles.text}
-              />
-            </View>
-          </ScrollView>
-
-          {/* Bottom Done Button */}
-          <View
-            style={[
-              styles.buttonContainer,
-              {
-                marginBottom: bottom,
-              },
-            ]}>
-            <CustomButton title="Done" onPress={goBack} />
           </View>
+        </ScrollView>
+
+        <View
+          style={[
+            styles.buttonContainer,
+            {
+              paddingBottom:
+                Platform.OS === 'ios' ? 0 : StatusBar?.currentHeight,
+            },
+          ]}>
+          <CustomButton title="Done" onPress={goBack} />
         </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </View>
+    </SafeAreaView>
   );
 };
 

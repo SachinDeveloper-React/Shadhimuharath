@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import {profileList, theme} from '../../constant';
-import {navigate} from '../../services';
+import {authService, navigate} from '../../services';
 import {CustomButton} from '../../common';
 import {CustomOptionItem} from '../../components';
 
@@ -60,7 +60,13 @@ const ProfileScreen = () => {
       title={item.title}
       leftIcon={<item.leftIcon />}
       rightIcon={<item.rightIcon />}
-      onPress={() => navigate(item?.navigation as any)}
+      onPress={async () => {
+        if (item?.navigation === 'Logout') {
+          await authService.logout();
+        } else {
+          navigate(item?.navigation as any);
+        }
+      }}
     />
   );
 

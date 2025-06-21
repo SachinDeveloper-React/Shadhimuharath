@@ -26,6 +26,7 @@ import {Alert, View} from 'react-native';
 import {DrawerActions} from '@react-navigation/native';
 import {theme} from '../constant';
 import {ActiveHomeIcon} from '../assets';
+import {navigate} from '../services';
 type Props = {};
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -71,8 +72,8 @@ const MainNavigator = (props: Props) => {
           headerRight: () => {
             return (
               <View style={{flexDirection: 'row', gap: 10, marginRight: 15}}>
-                <HeartIcon />
-                <NotificationIcon />
+                <HeartIcon onPress={() => navigate('ShortList')} />
+                <NotificationIcon onPress={() => navigate('Notification')} />
               </View>
             );
           },

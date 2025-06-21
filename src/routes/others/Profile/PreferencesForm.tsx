@@ -7,6 +7,8 @@ import {
   View,
   ScrollView,
   SafeAreaView,
+  Platform,
+  StatusBar,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -68,8 +70,29 @@ const PreferencesForm = (props: Props) => {
             start={{x: 0, y: 0.5}}
             end={{x: 1, y: 0.5}}
             colors={[theme.colors.secondary, theme.colors.primary]}
-            style={styles.selectedButton}>
-            <Text style={styles.selectedText}>{label}</Text>
+            style={[
+              {
+                ...Platform.select({
+                  ios: {
+                    alignItems: 'center',
+                    borderRadius: theme.radius.sm + 2,
+                  },
+                  android: {
+                    ...styles.selectedButton,
+                  },
+                }),
+              },
+            ]}>
+            <Text
+              style={[
+                styles.selectedText,
+                {
+                  paddingVertical:
+                    Platform.OS === 'android' ? 0 : theme.spacing.sm,
+                },
+              ]}>
+              {label}
+            </Text>
           </LinearGradient>
         ) : (
           <View style={styles.unselectedButton}>
@@ -129,7 +152,14 @@ const PreferencesForm = (props: Props) => {
           </View>
         </ScrollView>
 
-        <View style={[styles.buttonContainer, {paddingBottom: bottom || 16}]}>
+        <View
+          style={[
+            styles.buttonContainer,
+            {
+              paddingBottom:
+                Platform.OS === 'ios' ? 0 : StatusBar?.currentHeight,
+            },
+          ]}>
           <CustomButton
             title="Continue"
             onPress={() => {
@@ -154,14 +184,11 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: theme.spacing.md,
-    // paddingBottom: 32,
   },
   title: {
     fontSize: theme.text.fontSize.lg,
     fontWeight: theme.text.fontWeight.regular,
     color: theme.colors.textPrimary,
-    // marginBottom: theme.spacing.sm,
-    // marginTop: theme.spacing.lg,
   },
   optionsGrid: {
     flexDirection: 'row',
@@ -169,22 +196,20 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.md,
   },
   selectedButton: {
-    borderRadius: theme.radius.sm + 2,
+    paddingVertical: theme.spacing.sm,
     alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: theme.radius.sm + 2,
   },
   unselectedButton: {
     paddingVertical: theme.spacing.sm,
-    borderRadius: theme.radius.md,
-    borderWidth: 1.5,
+    borderWidth: 0.5,
     borderColor: theme.colors.primary,
     alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: theme.radius.sm + 2,
   },
   selectedText: {
     color: theme.colors.white,
     fontWeight: theme.text.fontWeight.semiBold,
-    paddingVertical: theme.spacing.md,
   },
   unselectedText: {
     color: theme.colors.primary,
@@ -198,7 +223,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     paddingHorizontal: 16,
-    // paddingTop: 16,
     backgroundColor: '#fff',
   },
 });

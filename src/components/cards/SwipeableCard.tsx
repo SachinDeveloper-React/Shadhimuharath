@@ -11,8 +11,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
-
-import CardItem from './CardItem';
 import SwipCardItem from './SwipCardItem';
 
 interface CardItemProps {

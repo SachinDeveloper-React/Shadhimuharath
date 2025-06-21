@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Platform,
+  StatusBar,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import {CustomButton} from '../../common';
@@ -111,7 +112,11 @@ const FormScreen = () => {
         <CustomButton
           title="Save"
           onPress={() => navigate('PremiumConfirmation')}
-          style={{paddingHorizontal: 16, marginBottom: bottom}}
+          style={{
+            paddingHorizontal: 16,
+            paddingBottom:
+              Platform.OS === 'ios' ? bottom : StatusBar?.currentHeight,
+          }}
         />
       </View>
     </TouchableWithoutFeedback>

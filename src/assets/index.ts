@@ -43,4 +43,6 @@ export {
   MatchHeartIcon,
   StarIcon,
   CongratulationsIcon,
+  NegativeIcon,
+  PositiveIcon,
 } from './icon';

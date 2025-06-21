@@ -1,5 +1,12 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View, Pressable} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  StatusBar,
+} from 'react-native';
 import {
   AuthHeader,
   CustomButton,
@@ -68,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     paddingHorizontal: theme.spacing.xl,
-    paddingVertical: theme.spacing.lg,
+    paddingVertical: StatusBar.currentHeight,
   },
   content: {
     gap: theme.spacing.md,

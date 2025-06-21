@@ -2,11 +2,20 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Svg, {Path, Rect} from 'react-native-svg';
 
-type Props = {};
+type Props = {
+  onPress?: () => void;
+  width?: number;
+  height?: number;
+};
 
-const Camera = (props: Props) => {
+const Camera = ({onPress, height = 54, width = 55}: Props) => {
   return (
-    <Svg width="55" height="54" viewBox="0 0 55 54" fill="none">
+    <Svg
+      width={width}
+      height={height}
+      viewBox="0 0 55 54"
+      fill="none"
+      onPress={onPress}>
       <Rect
         x="0.9"
         y="0.4"

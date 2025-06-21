@@ -2,21 +2,22 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {theme} from '../../../constant';
 import Icon from 'react-native-vector-icons/Feather';
+
 type Props = {
-  onPressIcon?: () => void;
+  selected: boolean;
+  onPress: () => void;
 };
 
-const CommunityNote = (props: Props) => {
-  const {onPressIcon} = props;
+const CommunityNote = ({selected, onPress}: Props) => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={onPressIcon} style={styles.iconButton}>
-        <Icon name="check" size={10} color={theme.colors.white} />
-      </TouchableOpacity>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
+      <View style={[styles.iconBox, selected && styles.iconBoxSelected]}>
+        {selected && <Icon name="check" size={10} color={theme.colors.white} />}
+      </View>
       <Text style={styles.text}>
         Not particular about my partner's community (caste no bar)
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -24,26 +25,26 @@ export default CommunityNote;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     flexDirection: 'row',
-    alignItems: 'baseline',
+    alignItems: 'center',
     gap: theme.spacing.sm,
   },
-  iconButton: {
+  iconBox: {
     width: 16,
     height: 16,
     borderRadius: 4,
-    backgroundColor: theme.colors.primary,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: theme.colors.white,
   },
-  icon: {
-    // flex: 1,
+  iconBoxSelected: {
     backgroundColor: theme.colors.primary,
-    borderRadius: theme.radius.sm,
+    borderColor: theme.colors.primary,
   },
   text: {
-    width: theme.layout.screenWidth * 0.7,
+    flex: 1,
     fontSize: theme.text.fontSize.base,
     color: theme.colors.textPrimary,
   },

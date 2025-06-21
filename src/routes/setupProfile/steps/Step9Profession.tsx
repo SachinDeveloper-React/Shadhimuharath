@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import {
   AuthHeader,
   CustomButton,
@@ -74,7 +74,6 @@ const Step9Profession = ({navigation}: Props) => {
           title="Continue"
           onPress={() => navigation.navigate('Step10Photo')}
           // disabled={!isFormValid}
-          style={{paddingVertical: theme.spacing.md}}
           accessible
           accessibilityRole="button"
           accessibilityLabel="Continue button"
@@ -91,13 +90,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
-    paddingTop: theme.spacing.md,
   },
   innerContainer: {
     flex: 1,
-    paddingHorizontal: theme.spacing.md,
-
     justifyContent: 'space-between',
+    paddingHorizontal: theme.spacing.md,
+    paddingVertical: StatusBar.currentHeight,
   },
   formGroup: {
     gap: theme.spacing.lg,
