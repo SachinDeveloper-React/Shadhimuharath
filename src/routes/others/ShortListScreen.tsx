@@ -11,6 +11,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from '@react-native-community/blur';
 import {theme} from '../../constant';
+import {BookMarkIcon, HeartIcon, MatchHeartIcon} from '../../assets';
 
 const {width} = Dimensions.get('window');
 const CARD_WIDTH = (width - 48) / 2;
@@ -57,14 +58,25 @@ const ProfileCard = ({profile}: {profile: Profile}) => (
         ) : (
           <View style={styles.androidBlurFallback} />
         )}
-        <View style={styles.textContent}>
-          <View style={styles.nameRow}>
-            <Text style={styles.name}>
-              {profile.name}, {profile.age}
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            paddingHorizontal: 12,
+          }}>
+          <View style={styles.textContent}>
+            <View style={styles.nameRow}>
+              <Text style={styles.name}>
+                {profile.name}, {profile.age}
+              </Text>
+              <View style={styles.onlineDot} />
+            </View>
+            <Text style={styles.location}>
+              {profile.location.toUpperCase()}
             </Text>
-            <View style={styles.onlineDot} />
           </View>
-          <Text style={styles.location}>{profile.location.toUpperCase()}</Text>
+          <BookMarkIcon />
         </View>
       </View>
     </View>
@@ -172,7 +184,6 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   textContent: {
-    paddingHorizontal: 12,
     paddingVertical: 8,
   },
   androidBlurFallback: {

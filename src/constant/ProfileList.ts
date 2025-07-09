@@ -1,4 +1,5 @@
 import {
+  DeleteIcon,
   FaqIcon,
   LogoutIcon,
   NotificationYellowIcon,
@@ -91,6 +92,18 @@ export const profileList = [
         leftIcon: LogoutIcon,
         rightIcon: RightIcon,
         navigation: 'Logout',
+      },
+    ],
+  },
+  {
+    id: 6,
+    sublist: [
+      {
+        id: 1,
+        title: 'Delete Account',
+        leftIcon: DeleteIcon,
+        rightIcon: RightIcon,
+        navigation: 'Delete',
       },
     ],
   },

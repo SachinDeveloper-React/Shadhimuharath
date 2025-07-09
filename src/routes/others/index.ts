@@ -11,6 +11,11 @@ export {default as PremiumConfirmationScreen} from './PremiumConfirmationScreen'
 export {default as PersonalInfoScreen} from './PersonalInfoScreen';
 export {default as ShortListScreen} from './ShortListScreen';
 export {
+  SearchScreen,
+  SearchPersonalizedFirstScreen,
+  SearchPersonalizedSecondScreen,
+} from './Search';
+export {
   Preferences2Form,
   Preferences3Form,
   PreferencesForm,
@@ -18,3 +23,6 @@ export {
   ProfileInfoForm,
   ReligionInfoForm,
 } from './Profile';
+
+export {default as PrivacyAndPolicyScreen} from './PrivacyAndPolicyScreen';
+export {default as TermAndConditionScreen} from './TermAndConditionScreen';

@@ -8,6 +8,7 @@ import {
   Platform,
   TextStyle,
   ViewProps,
+  useColorScheme,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {ArrowDownIcon} from '../assets';
@@ -21,6 +22,7 @@ type Props = ViewProps & {
   options: string[];
   labelStyle?: TextStyle;
   textStyle?: TextStyle;
+  borderColor?: 'primary' | 'inactive';
 };
 
 const DropdownPicker = ({
@@ -31,8 +33,10 @@ const DropdownPicker = ({
   placeholder,
   labelStyle,
   textStyle,
+  borderColor = 'inactive',
   ...props
 }: Props) => {
+  const darkTheme = useColorScheme();
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -40,7 +44,15 @@ const DropdownPicker = ({
       {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
       {Platform.OS === 'ios' && (
         <TouchableOpacity
-          style={styles.dropdown}
+          style={[
+            styles.dropdown,
+            {
+              borderColor:
+                borderColor === 'inactive'
+                  ? theme.colors.inactive
+                  : theme.colors.primary,
+            },
+          ]}
           onPress={() => setModalVisible(true)}>
           <Text style={[styles.valueText, textStyle]}>
             {selectedValue || placeholder}
@@ -55,7 +67,16 @@ const DropdownPicker = ({
             style={styles.modalOverlay}
             onPress={() => setModalVisible(false)}
             activeOpacity={1}>
-            <View style={styles.modalContent}>
+            <View
+              style={[
+                styles.modalContent,
+                {
+                  backgroundColor:
+                    darkTheme === 'dark'
+                      ? theme.colors.textSecondary
+                      : theme.colors.background,
+                },
+              ]}>
               <Picker
                 selectedValue={selectedValue}
                 onValueChange={val => {
@@ -96,7 +117,7 @@ const styles = StyleSheet.create({
     fontWeight: theme.text.fontWeight.medium,
   },
   dropdown: {
-    borderWidth: 1.5,
+    borderWidth: 1,
     borderColor: theme.colors.inactive,
     borderRadius: theme.radius.md,
     padding: theme.spacing.sm,
@@ -133,7 +154,6 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   modalContent: {
-    backgroundColor: theme.colors.background,
     padding: theme.spacing.lg,
     borderTopLeftRadius: theme.radius.lg,
     borderTopRightRadius: theme.radius.lg,

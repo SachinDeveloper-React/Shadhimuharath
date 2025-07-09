@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Dimensions,
   FlatList,
@@ -8,20 +8,34 @@ import {
   Text,
   View,
 } from 'react-native';
-import {GradientText, UpgradeButton} from '../../common';
+import Feather from 'react-native-vector-icons/Feather';
+import {
+  CustomButton,
+  CustomGradientOutlineButton,
+  CustomModal,
+  GradientText,
+  UpgradeButton,
+} from '../../common';
 import {RightIcon} from '../../assets';
 import {
   CardItem,
   MatchCard,
   ProfileCard,
   ProfileCompletionBanner,
+  SubscriptionModal,
 } from '../../components';
 import {cardListData} from '../../constant/cardListData';
 import {navigate} from '../../services';
+import {theme} from '../../constant';
 
 const CARD_WIDTH = Dimensions.get('window').width;
 
 const HomeScreen: React.FC = () => {
+  const [isModalVisible, setIsModalVisible] = useState(true);
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <SafeAreaView style={styles.container} accessibilityRole="summary">
       <ScrollView
@@ -90,6 +104,11 @@ const HomeScreen: React.FC = () => {
           />
         </View>
       </ScrollView>
+
+      <SubscriptionModal
+        isModalVisible={isModalVisible}
+        closeModal={closeModal}
+      />
     </SafeAreaView>
   );
 };

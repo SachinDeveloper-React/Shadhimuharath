@@ -14,11 +14,10 @@ import {
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {cardListData} from '../../constant/cardListData';
 import {useSharedValue} from 'react-native-reanimated';
-
 import {GradientText} from '../../common';
 import {NegativeIcon, PositiveIcon, RightIcon, SearchIcon} from '../../assets';
 import {MatchCard, SwipeableCard, SwipeableCardRef} from '../../components';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import {navigate} from '../../services';
 
 const MAX_VISIBLE_CARDS = 3;
 
@@ -26,12 +25,8 @@ const DiscoverScreen = () => {
   const [newData, setNewData] = useState([...cardListData, ...cardListData]);
   const cardRef = useRef<SwipeableCardRef>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [search, setSearch] = useState('');
-  const animatedValue = useSharedValue(0);
 
-  const handleSearch = (text: string) => {
-    setSearch(text);
-  };
+  const animatedValue = useSharedValue(0);
 
   return (
     <GestureHandlerRootView style={styles.flexContainer}>
@@ -39,18 +34,22 @@ const DiscoverScreen = () => {
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}>
-          <View style={styles.searchFilterRow}>
+          <TouchableOpacity
+            style={styles.searchFilterRow}
+            onPress={() => navigate('SearchScreen')}>
             <View style={styles.searchInput}>
               <SearchIcon width={18} height={18} />
-              <TextInput
-                placeholder="Search"
-                style={styles.input}
-                value={search}
-                onChangeText={handleSearch}
-                placeholderTextColor="#888"
-              />
+              <Text
+                style={[
+                  styles.input,
+                  {
+                    color: '#888',
+                  },
+                ]}>
+                Search
+              </Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
           <View style={styles.cardContainer}>
             {newData.map((item, index) => {
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 30,
     paddingHorizontal: 12,
-    paddingVertical: Platform.OS === 'ios' ? 10 : 0,
+    paddingVertical: 10,
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#D69892',

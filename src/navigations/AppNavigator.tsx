@@ -16,12 +16,17 @@ import {
   Preferences3Form,
   PreferencesForm,
   PremiumConfirmationScreen,
+  PrivacyAndPolicyScreen,
   ProfessionalInfo,
   ProfileInfoForm,
   ReligionInfoForm,
+  SearchPersonalizedFirstScreen,
+  SearchPersonalizedSecondScreen,
+  SearchScreen,
   SettingScreen,
   ShortListScreen,
   SubscriptionScreen,
+  TermAndConditionScreen,
   UserProfileScreen,
   UserReviewScreen,
 } from '../routes';
@@ -222,6 +227,61 @@ const AppNavigator = () => {
               headerTintColor: '#4F1617',
             }}
             component={ProfessionalInfo}
+          />
+          <RootStack.Screen
+            name="SearchScreen"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: 'Search',
+              headerTitleAlign: 'left',
+              headerTintColor: '#4F1617',
+            }}
+            component={SearchScreen}
+          />
+          <RootStack.Screen
+            name="SearchPersonalizedFirstScreen"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: 'Personalized Search',
+              headerTitleAlign: 'left',
+              headerTintColor: '#4F1617',
+            }}
+            component={SearchPersonalizedFirstScreen}
+          />
+          <RootStack.Screen
+            name="SearchPersonalizedSecondScreen"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: 'Personalized Search',
+              headerTitleAlign: 'left',
+              headerTintColor: '#4F1617',
+            }}
+            component={SearchPersonalizedSecondScreen}
+          />
+          <RootStack.Screen
+            name="TermAndConditionScreen"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: 'Terms & Condition',
+              headerTitleAlign: 'left',
+              headerTintColor: '#4F1617',
+            }}
+            component={TermAndConditionScreen}
+          />
+          <RootStack.Screen
+            name="PrivacyAndPolicyScreen"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: 'Privacy Policy',
+              headerTitleAlign: 'left',
+              headerTintColor: '#4F1617',
+            }}
+            component={PrivacyAndPolicyScreen}
           />
         </>
       )}

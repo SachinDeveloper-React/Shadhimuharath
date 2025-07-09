@@ -45,4 +45,12 @@ export {
   CongratulationsIcon,
   NegativeIcon,
   PositiveIcon,
+  BookMarkIcon,
+  FillBookMarkIcon,
+  FillLikeIcon,
+  OutlineBookMarkIcon,
+  OutlineLikeIcon,
+  MinusIcon,
+  AnalyzeIcon,
+  DeleteIcon,
 } from './icon';

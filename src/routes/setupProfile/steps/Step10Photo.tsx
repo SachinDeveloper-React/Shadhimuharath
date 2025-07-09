@@ -105,7 +105,7 @@ const Step10Photo = ({navigation}: Props) => {
 
           <View style={styles.iconRow}>
             <CameraIcon onPress={handleCamera} />
-            <GallaryIcon onPress={handleGallery} />
+            {/* <GallaryIcon onPress={handleGallery} /> */}
           </View>
         </View>
 
@@ -118,7 +118,7 @@ const Step10Photo = ({navigation}: Props) => {
                 Platform.OS === 'ios' ? bottom : StatusBar.currentHeight,
             },
           ]}
-          onPress={() => authService.setProfileComplete(true)}
+          onPress={() => navigation.navigate('Step11Gallery')}
           accessible
           accessibilityRole="button"
           accessibilityLabel="Continue button"

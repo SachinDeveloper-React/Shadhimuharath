@@ -7,6 +7,7 @@ export {default as CustomCircularProgressBar} from './CircularProgressBar';
 export {default as CustomDropdownPicker} from './DropdownPicker';
 export {default as UpgradeButton} from './UpgradeButton';
 export {default as GradientText} from './GradientText';
+export {default as CustomModal} from './CustomModal';
 export {
   default as CustomCarousel,
   type CarouselItem,

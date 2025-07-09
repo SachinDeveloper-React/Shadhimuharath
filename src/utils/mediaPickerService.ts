@@ -1,5 +1,3 @@
-// services/mediaPickerService.ts
-
 import {Alert, Platform} from 'react-native';
 import {
   launchCamera,
@@ -18,12 +16,25 @@ import {
 
 const getPermission = async (permission: string | any) => {
   const status = await check(permission);
-
+  console.log('status', status);
   if (status === RESULTS.GRANTED) return true;
 
   if (status === RESULTS.DENIED) {
     const requestStatus = await request(permission);
     return requestStatus === RESULTS.GRANTED;
+  }
+
+  if (status === RESULTS.LIMITED) {
+    Alert.alert(
+      'Limited Access',
+      'You have granted limited access. To enable full access, please update settings.',
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {text: 'Open Settings', onPress: () => openSettings()},
+      ],
+    );
+
+    return false;
   }
 
   if (status === RESULTS.BLOCKED) {
@@ -76,6 +87,7 @@ const pickFromCamera = async (): Promise<Asset | null> => {
 
 const pickFromGallery = async (): Promise<Asset | null> => {
   const hasPermission = await getGalleryPermission();
+
   if (!hasPermission) return null;
 
   return new Promise((resolve, reject) => {

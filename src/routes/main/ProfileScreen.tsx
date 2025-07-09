@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {profileList, theme} from '../../constant';
 import {authService, navigate} from '../../services';
-import {CustomButton} from '../../common';
+import {CustomButton, CustomModal} from '../../common';
 import {CustomOptionItem, ProfileCard} from '../../components';
 
 const ProfileScreen = () => {
   const isLogin = true;
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const renderHeader = () => (
     <View>
@@ -43,6 +44,8 @@ const ProfileScreen = () => {
       onPress={async () => {
         if (item?.navigation === 'Logout') {
           await authService.logout();
+        } else if (item?.navigation === 'Delete') {
+          setDeleteModal(true);
         } else {
           navigate(item?.navigation as any);
         }
@@ -72,6 +75,31 @@ const ProfileScreen = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{paddingVertical: 16}}
         />
+        <CustomModal
+          isVisible={deleteModal}
+          closeModal={() => setDeleteModal(!deleteModal)}>
+          <View style={{gap: 20}}>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontSize: 16,
+                color: '#C1645C',
+                fontWeight: '700',
+              }}>
+              Delete Account
+            </Text>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontSize: 16,
+                color: '#D36366',
+                fontWeight: '400',
+              }}>
+              Are you sure want to delete Account?
+            </Text>
+            <CustomButton title="Confirm" />
+          </View>
+        </CustomModal>
       </View>
     </SafeAreaView>
   );

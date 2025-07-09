@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Dimensions,
   ImageBackground,
@@ -12,17 +12,22 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {
   BackButton,
-  MatchHeartIcon,
+  FillBookMarkIcon,
+  FillLikeIcon,
   MessageIcon,
-  VideoCallIcon,
-  VoiceCallIcon,
+  OutlineBookMarkIcon,
+  OutlineLikeIcon,
 } from '../../assets';
 import {goBack} from '../../services';
 import {ProfileTabs} from '../../components';
+import {CustomGradientOutlineButton} from '../../common';
+import {theme} from '../../constant';
 
 const UserProfileScreen = () => {
   const navigation = useNavigation();
-
+  const [sendIntrest, setSendIntrest] = useState(false);
+  const [like, setLike] = useState(false);
+  const [bookmark, setbookMark] = useState(false);
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView
@@ -43,15 +48,71 @@ const UserProfileScreen = () => {
               </TouchableOpacity>
               <Text style={styles.headerTitle}>Profile</Text>
             </View>
-            <MatchHeartIcon onPress={goBack} />
+            {/* <MatchHeartIcon onPress={goBack} /> */}
+            {sendIntrest ? (
+              <TouchableOpacity
+                style={styles.intrestButton}
+                onPress={() => setSendIntrest(!sendIntrest)}>
+                <Text style={styles.intrestText}>Interst Sent</Text>
+              </TouchableOpacity>
+            ) : (
+              <CustomGradientOutlineButton
+                title="Send Interest"
+                onPress={() => setSendIntrest(!sendIntrest)}
+                containerStyle={{
+                  borderRadius: 10,
+                }}
+              />
+            )}
           </View>
         </ImageBackground>
 
         <View style={styles.contentContainer}>
           <View style={styles.iconRow}>
-            <VoiceCallIcon width={64} height={64} />
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => setLike(!like)}
+              style={{
+                backgroundColor: '#fff',
+                width: 64,
+                height: 64,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 64 / 2,
+              }}>
+              {like ? <FillLikeIcon /> : <OutlineLikeIcon />}
+            </TouchableOpacity>
+
             <MessageIcon />
-            <VideoCallIcon width={64} height={64} />
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => setbookMark(!bookmark)}
+              style={{
+                backgroundColor: '#fff',
+                width: 64,
+                height: 64,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 64 / 2,
+              }}>
+              {bookmark ? <FillBookMarkIcon /> : <OutlineBookMarkIcon />}
+            </TouchableOpacity>
           </View>
 
           <TouchableOpacity style={styles.verificationButton}>
@@ -113,13 +174,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     marginTop: -64, // -128 / 2
-    gap: 20,
+    // gap: 20,
   },
   verificationButton: {
     backgroundColor: '#E8E8E8',
     margin: 16,
     borderRadius: 8,
     marginTop: -10,
+  },
+  intrestButton: {
+    backgroundColor: theme.colors.transparent,
+    borderRadius: theme.radius.sm,
+    paddingVertical: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.xl,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: theme.colors.white,
+  },
+  intrestText: {
+    fontSize: theme.text.fontSize.base,
+    fontWeight: theme.text.fontWeight.light,
+    textAlign: 'center',
+    color: theme.colors.white,
   },
   verificationText: {
     color: '#BBBBBB',

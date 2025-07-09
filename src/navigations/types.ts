@@ -32,6 +32,7 @@ export type SetupProfileStackParamList = {
   Step8College: undefined;
   Step9Profession: undefined;
   Step10Photo: undefined;
+  Step11Gallery: undefined;
 };
 export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
@@ -56,4 +57,9 @@ export type RootStackParamList = {
   Preferences2: undefined;
   Preferences3: undefined;
   ProfessionalInfo: undefined;
+  SearchScreen: undefined;
+  SearchPersonalizedFirstScreen: undefined;
+  SearchPersonalizedSecondScreen: undefined;
+  TermAndConditionScreen: undefined;
+  PrivacyAndPolicyScreen: undefined;
 };

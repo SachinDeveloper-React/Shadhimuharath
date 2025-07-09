@@ -11,4 +11,5 @@ export {
   Step8CollegeScreen,
   Step9ProfessionScreen,
   Step10PhotoScreen,
+  Step11GalleryScreen,
 } from './steps';

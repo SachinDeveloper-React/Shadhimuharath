@@ -26,10 +26,10 @@ const WelcomeScreen = ({
         resizeMode="cover"
         style={styles.image}>
         <View style={styles.skipContainer}>
-          <CustomGradientOutlineButton
+          {/* <CustomGradientOutlineButton
             title="Skip"
             onPress={() => console.log('Tapped')}
-          />
+          /> */}
         </View>
 
         <View style={styles.bottomContent}>
@@ -38,11 +38,11 @@ const WelcomeScreen = ({
               title="Login"
               onPress={() => navigation.navigate('Login')}
             />
-            <CustomBlurButton
+            {/* <CustomBlurButton
               title="Sign Up"
               color="#fff"
               onPress={() => navigation.navigate('Signup')}
-            />
+            /> */}
           </View>
         </View>
         <View

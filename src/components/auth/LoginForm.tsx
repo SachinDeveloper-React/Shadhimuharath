@@ -37,7 +37,7 @@ const LoginForm = (props: Props) => {
           onChangeText={onChangePhoneNumber}
         />
 
-        <View style={styles.loginWrapper}>
+        {/* <View style={styles.loginWrapper}>
           <Text
             style={styles.signupText}
             accessibilityRole="text"
@@ -51,7 +51,7 @@ const LoginForm = (props: Props) => {
             accessibilityLabel="Log In Button">
             <Text style={styles.signupLink}>Sign Up</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
 
       <CustomButton

@@ -23,10 +23,10 @@ const SETTINGS_LIST: SettingSection[] = [
     sublist: [
       {
         id: 1,
-        title: 'Contact Us',
-        leftIcon: UserReviewIcon,
+        title: 'Term & Condition',
+        leftIcon: SettingIcon,
         rightIcon: RightIcon,
-        navigation: '',
+        navigation: 'TermAndConditionScreen',
       },
     ],
   },
@@ -35,8 +35,20 @@ const SETTINGS_LIST: SettingSection[] = [
     sublist: [
       {
         id: 1,
-        title: 'Reset Password',
+        title: 'Privacy Policy',
         leftIcon: SettingIcon,
+        rightIcon: RightIcon,
+        navigation: 'PrivacyAndPolicyScreen',
+      },
+    ],
+  },
+  {
+    id: 3,
+    sublist: [
+      {
+        id: 1,
+        title: 'Contact Us',
+        leftIcon: UserReviewIcon,
         rightIcon: RightIcon,
         navigation: '',
       },

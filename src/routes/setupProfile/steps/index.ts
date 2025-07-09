@@ -8,3 +8,4 @@ export {default as Step7EducationScreen} from './Step7Education';
 export {default as Step8CollegeScreen} from './Step8College';
 export {default as Step9ProfessionScreen} from './Step9Profession';
 export {default as Step10PhotoScreen} from './Step10Photo';
+export {default as Step11GalleryScreen} from './Step11Gallery';

@@ -9,19 +9,20 @@ import {
   SafeAreaView,
   Dimensions,
   FlatList,
+  ImageBackground,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {theme} from '../../constant';
 import {navigate} from '../../services';
+import {MinusIcon} from '../../assets';
 
-const ProfileScreen = () => {
+const PersonalInfoScreen = () => {
   const sections = [
     {
       label: 'Personal Info',
       next: 'ProfileInfo',
     },
     {label: 'Regional Info', next: 'ReligionInfo'},
-    {label: 'Preferences', next: 'Preferences'},
     {label: 'Professional Info', next: 'ProfessionalInfo'},
   ];
 
@@ -68,11 +69,22 @@ const ProfileScreen = () => {
           columnWrapperStyle={styles.columnWrapper}
           contentContainerStyle={styles.galleryContainer}
           renderItem={({item}) => (
-            <Image
-              source={{uri: 'https://i.pravatar.cc/300'}}
-              resizeMode="cover"
-              style={styles.galleryImage}
-            />
+            <>
+              {/* <Image
+                source={{uri: 'https://i.pravatar.cc/300'}}
+                resizeMode="cover"
+                style={styles.galleryImage}
+              /> */}
+              <ImageBackground
+                style={styles.galleryImage}
+                source={{
+                  uri: 'https://i.pravatar.cc/300',
+                }}>
+                <View style={{alignSelf: 'flex-end', margin: 12}}>
+                  <MinusIcon />
+                </View>
+              </ImageBackground>
+            </>
           )}
         />
       </ScrollView>
@@ -80,7 +92,7 @@ const ProfileScreen = () => {
   );
 };
 
-export default ProfileScreen;
+export default PersonalInfoScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -162,6 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 1,
     borderColor: theme.colors.primary,
+    overflow: 'hidden',
   },
   galleryContainer: {
     paddingBottom: 16,

@@ -12,6 +12,7 @@ import {
   Step8CollegeScreen,
   Step9ProfessionScreen,
   Step10PhotoScreen,
+  Step11GalleryScreen,
 } from '../routes';
 
 type Props = {};
@@ -31,6 +32,7 @@ const SetupProfileNavigator = (props: Props) => {
       <Stack.Screen name="Step8College" component={Step8CollegeScreen} />
       <Stack.Screen name="Step9Profession" component={Step9ProfessionScreen} />
       <Stack.Screen name="Step10Photo" component={Step10PhotoScreen} />
+      <Stack.Screen name="Step11Gallery" component={Step11GalleryScreen} />
     </Stack.Navigator>
   );
 };

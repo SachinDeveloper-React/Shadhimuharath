@@ -15,7 +15,9 @@ const LoginScreen = ({
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'dark-content'} />
-      <CustomKeyboardAvoidingView contentContainerStyle={styles.innerContainer}>
+      <CustomKeyboardAvoidingView
+        contentContainerStyle={styles.innerContainer}
+        androidExtraSpace={160}>
         <LoginHeader navigation={navigation} />
         <LoginLogo />
         <LoginForm

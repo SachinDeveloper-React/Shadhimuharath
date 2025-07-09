@@ -9,7 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {CustomButton, CustomDropdownPicker} from '../../../common'; // Ensure you’ve this reusable dropdown
+import {CustomButton, CustomDropdownPicker} from '../../../common';
 import {theme} from '../../../constant';
 import {goBack} from '../../../services';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -21,6 +21,8 @@ const dietOptions = ['Veg', 'Non-Veg', 'Eggetarian', 'Vegan'];
 const countries = ['India'];
 const states = ['U.P.', 'Delhi', 'Maharashtra'];
 const cities = ['Ghaziabad', 'Noida', 'Lucknow'];
+const district = ['India', 'Japan', 'America'];
+const block = ['UP', 'DELHI', 'UTTRAKHAND'];
 
 const ProfileInfoForm = () => {
   const [formData, setFormData] = useState<{[key: string]: string}>({});
@@ -46,10 +48,12 @@ const ProfileInfoForm = () => {
           <View style={styles.half}>
             <Text style={styles.label}>Name</Text>
             <TextInput
+              inputMode="text"
               style={styles.input}
               placeholder="Samantha John"
               value={formData.name || ''}
               onChangeText={text => handleValueChange('name', text)}
+              placeholderTextColor="#ccc"
             />
           </View>
           <View style={styles.half}>
@@ -190,17 +194,64 @@ const ProfileInfoForm = () => {
           textStyle={{
             fontSize: 16,
           }}
+          style={{marginBottom: theme.spacing.xl}}
         />
 
-        <View style={{marginVertical: theme.spacing.xl}}>
+        <View style={styles.row}>
+          <View style={styles.half}>
+            <CustomDropdownPicker
+              label="District"
+              selectedValue={formData.district || ''}
+              onValueChange={val => handleValueChange('district', val)}
+              options={district}
+              placeholder="Select"
+              labelStyle={{
+                fontSize: 16,
+              }}
+              textStyle={{
+                fontSize: 16,
+              }}
+            />
+          </View>
+          <View style={styles.half}>
+            <CustomDropdownPicker
+              label="Block"
+              selectedValue={formData.block || ''}
+              onValueChange={val => handleValueChange('block', val)}
+              options={block}
+              placeholder="Select"
+              labelStyle={{
+                fontSize: 16,
+              }}
+              textStyle={{
+                fontSize: 16,
+              }}
+            />
+          </View>
+        </View>
+
+        <View style={{marginBottom: theme.spacing.xl}}>
           <Text style={styles.label}>Email ID</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="SamanthaJohn@gmail.com"
-            keyboardType="email-address"
-            value={formData.email || ''}
-            onChangeText={text => handleValueChange('email', text)}
-          />
+          <View
+            style={[
+              styles.input,
+              {
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              },
+            ]}>
+            <TextInput
+              placeholder="SamanthaJohn@gmail.com"
+              keyboardType="email-address"
+              value={formData.email || ''}
+              onChangeText={text => handleValueChange('email', text)}
+              placeholderTextColor="#ccc"
+            />
+            <TouchableOpacity>
+              <Text style={{color: theme.colors.primary}}>Verify</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <CustomButton title="Done" onPress={goBack} />

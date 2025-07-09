@@ -12,14 +12,19 @@ import {
 const NotificationsScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.cardWrapper}>
-        <NotificationCard />
-      </View>
-
       <FlatList
         data={[1, 2, 4, 5]}
         keyExtractor={(_, i) => i.toString()}
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={() => {
+          return (
+            <View style={styles.cardWrapper}>
+              <NotificationCard />
+              <NotificationDocumentCard />
+              <NotificationVeifiedCard />
+            </View>
+          );
+        }}
         contentContainerStyle={styles.listContent}
         renderItem={({item}) => <NotificationItem />}
       />
@@ -58,6 +63,71 @@ const NotificationCard = () => {
     </View>
   );
 };
+const NotificationVeifiedCard = () => {
+  return (
+    <View style={styles.card}>
+      <View style={styles.cardHeader}>
+        <Image
+          source={{
+            uri: 'https://plus.unsplash.com/premium_photo-1664298311043-46b3814a511f?q=80&w=2083&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          }}
+          style={styles.cardImage}
+        />
+        <View style={styles.cardTextContainer}>
+          <View style={styles.cardTitleRow}>
+            <Text
+              style={[
+                styles.cardTag,
+                {
+                  color: '#46CF68',
+                },
+              ]}>
+              Profile Verified
+            </Text>
+            <Text style={styles.cardDate}>06 Feb 2025</Text>
+          </View>
+          <Text style={styles.cardName}>Samantha John</Text>
+          <Text style={styles.cardAddress}>H-70, Sector 63</Text>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const NotificationDocumentCard = () => {
+  return (
+    <View style={styles.card}>
+      <View
+        style={[
+          styles.cardHeader,
+          {
+            alignItems: 'center',
+          },
+        ]}>
+        <Image
+          source={{
+            uri: 'https://plus.unsplash.com/premium_photo-1664298311043-46b3814a511f?q=80&w=2083&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          }}
+          style={styles.cardImage}
+        />
+
+        <View style={styles.cardTitleRow}>
+          <Text style={styles.cardTag}>Delete Verification Request</Text>
+          <Text style={styles.cardDate}>06 Feb 2025</Text>
+        </View>
+      </View>
+
+      <View style={styles.actionRow}>
+        <TouchableOpacity style={styles.acceptButton}>
+          <Text style={styles.acceptText}>Upload Document</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.rejectButton}>
+          <Text style={styles.rejectText}>Delete</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
 
 const NotificationItem = () => {
   return (
@@ -75,8 +145,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   cardWrapper: {
-    marginVertical: 8,
+    marginVertical: 16,
     marginHorizontal: 16,
+    gap: 10,
   },
   card: {
     backgroundColor: '#FFF1F2',

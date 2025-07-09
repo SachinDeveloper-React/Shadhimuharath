@@ -47,3 +47,12 @@ export {default as StarIcon} from './StarIcon';
 export {default as CongratulationsIcon} from './CongratulationsIcon';
 export {default as PositiveIcon} from './PositiveIcon';
 export {default as NegativeIcon} from './NegativeIcon';
+export {default as BookMarkIcon} from './BookMarkIcon';
+
+export {default as OutlineLikeIcon} from './OutlineLikeIcon';
+export {default as OutlineBookMarkIcon} from './OutlineBookMarkIcon';
+export {default as FillBookMarkIcon} from './FillBookMarkIcon';
+export {default as FillLikeIcon} from './FillLikeIcon';
+export {default as MinusIcon} from './MinusIcon';
+export {default as AnalyzeIcon} from './AnalyzeIcon';
+export {default as DeleteIcon} from './DeleteIcon';

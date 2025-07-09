@@ -13,7 +13,7 @@ import {theme} from '../../../constant';
 
 const Step2Community = ({
   navigation,
-}: NativeStackScreenProps<SetupProfileStackParamList, 'Step2Community'>) => {
+}: NativeStackScreenProps<SetupProfileStackParamList, 'Step6Lifestyle'>) => {
   const [formData, setFormData] = useState<{[key: string]: string}>({});
 
   const handleValueChange = (category: string, value: string) => {

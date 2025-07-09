@@ -19,7 +19,7 @@ import {SetupProfileStackParamList} from '../../../navigations';
 
 const Step5Email = ({
   navigation,
-}: NativeStackScreenProps<SetupProfileStackParamList, 'Step4BasicInfo'>) => {
+}: NativeStackScreenProps<SetupProfileStackParamList, 'Step5Email'>) => {
   const [email, setEmail] = useState('');
 
   return (

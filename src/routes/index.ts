@@ -26,6 +26,7 @@ export {
   Step8CollegeScreen,
   Step9ProfessionScreen,
   Step10PhotoScreen,
+  Step11GalleryScreen,
 } from './setupProfile';
 
 export {
@@ -47,4 +48,9 @@ export {
   ProfileInfoForm,
   ReligionInfoForm,
   ShortListScreen,
+  SearchScreen,
+  SearchPersonalizedFirstScreen,
+  SearchPersonalizedSecondScreen,
+  PrivacyAndPolicyScreen,
+  TermAndConditionScreen,
 } from './others';

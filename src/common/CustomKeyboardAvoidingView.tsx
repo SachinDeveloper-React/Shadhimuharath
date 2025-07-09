@@ -12,6 +12,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 type Props = KeyboardAvoidingViewProps & {
   children: ReactNode;
+  androidExtraSpace?: number;
   contentContainerStyle?: ViewStyle;
   scrollViewProps?: ScrollViewProps;
   keyboardAvoidingProps?: KeyboardAvoidingViewProps;
@@ -19,6 +20,7 @@ type Props = KeyboardAvoidingViewProps & {
 
 const CustomKeyboardAvoidingView = ({
   children,
+  androidExtraSpace = 0,
   contentContainerStyle,
   scrollViewProps,
   keyboardAvoidingProps,
@@ -44,7 +46,7 @@ const CustomKeyboardAvoidingView = ({
       contentContainerStyle={[styles.scrollContent, contentContainerStyle]}
       enableOnAndroid={true}
       enableAutomaticScroll={true}
-      extraScrollHeight={Platform.OS === 'ios' ? 20 : 0}
+      extraScrollHeight={Platform.OS === 'ios' ? 20 : androidExtraSpace}
       keyboardShouldPersistTaps="handled">
       {children}
     </KeyboardAwareScrollView>
