@@ -17,9 +17,11 @@ import {
   MessageIcon,
   OutlineBookMarkIcon,
   OutlineLikeIcon,
+  PremiumIcon,
+  ThreeDotMenuIcon,
 } from '../../assets';
 import {goBack} from '../../services';
-import {ProfileTabs} from '../../components';
+import {ProfileTabs, UserProfileModel} from '../../components';
 import {CustomGradientOutlineButton} from '../../common';
 import {theme} from '../../constant';
 
@@ -28,6 +30,11 @@ const UserProfileScreen = () => {
   const [sendIntrest, setSendIntrest] = useState(false);
   const [like, setLike] = useState(false);
   const [bookmark, setbookMark] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(true);
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView
@@ -48,22 +55,26 @@ const UserProfileScreen = () => {
               </TouchableOpacity>
               <Text style={styles.headerTitle}>Profile</Text>
             </View>
-            {/* <MatchHeartIcon onPress={goBack} /> */}
-            {sendIntrest ? (
-              <TouchableOpacity
-                style={styles.intrestButton}
-                onPress={() => setSendIntrest(!sendIntrest)}>
-                <Text style={styles.intrestText}>Interst Sent</Text>
-              </TouchableOpacity>
-            ) : (
-              <CustomGradientOutlineButton
-                title="Send Interest"
-                onPress={() => setSendIntrest(!sendIntrest)}
-                containerStyle={{
-                  borderRadius: 10,
-                }}
-              />
-            )}
+            <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
+              {/* <MatchHeartIcon onPress={goBack} /> */}
+              {sendIntrest ? (
+                <TouchableOpacity
+                  style={styles.intrestButton}
+                  onPress={() => setSendIntrest(!sendIntrest)}>
+                  <Text style={styles.intrestText}>Interst Sent</Text>
+                </TouchableOpacity>
+              ) : (
+                <CustomGradientOutlineButton
+                  title="Send Interest"
+                  onPress={() => setSendIntrest(!sendIntrest)}
+                  containerStyle={{
+                    borderRadius: 10,
+                  }}
+                />
+              )}
+              <PremiumIcon />
+              <ThreeDotMenuIcon />
+            </View>
           </View>
         </ImageBackground>
 
@@ -120,6 +131,10 @@ const UserProfileScreen = () => {
           </TouchableOpacity>
 
           <ProfileTabs />
+          <UserProfileModel
+            isModalVisible={isModalVisible}
+            closeModal={closeModal}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -152,9 +167,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backButton: {
-    padding: 8,
+    paddingRight: 8,
     borderRadius: 20,
-    alignSelf: 'flex-start',
+    alignSelf: 'center',
   },
   headerTitle: {
     fontSize: 16,

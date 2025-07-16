@@ -112,7 +112,7 @@ export default DropdownPicker;
 const styles = StyleSheet.create({
   label: {
     marginBottom: theme.spacing.xs,
-    fontSize: theme.text.fontSize.xl,
+    fontSize: theme.text.fontSize.base,
     color: theme.colors.textPrimaryHeader,
     fontWeight: theme.text.fontWeight.medium,
   },

@@ -53,4 +53,11 @@ export {
   MinusIcon,
   AnalyzeIcon,
   DeleteIcon,
+  PlusIcon,
+  CrossIcon,
+  PremiumIcon,
+  ThreeDotMenuIcon,
+  SupportIcon,
+  SilverPremiumIcon,
+  GoldPremiumIcon,
 } from './icon';

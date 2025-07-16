@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, Pressable, FlatList} from 'react-native';
 
-const TAG_CATEGORIES = {
-  Gender: ['Male', 'Female'],
-  Language: ['Hindi', 'English', 'Tamil'],
-  Religion: ['Hindu', 'Muslim', 'Sikh', 'Christian'],
-  Age: ['Age 25-30', 'Age 30-35', 'Age 35-40', 'Age 40-45'],
-};
+const TAG_CATEGORIES = [
+  'Single',
+  'Widowed',
+  'Veg',
+  'Non-Veg',
+  'Married',
+  'Male',
+  'Female',
+];
 
 const TagFilter = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>(['Male']);
@@ -34,18 +37,19 @@ const TagFilter = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Tag</Text>
-      {Object.entries(TAG_CATEGORIES).map(([category, tags]) => (
-        <View style={styles.tagRow} key={category}>
-          {tags.map(renderTag)}
-        </View>
-      ))}
+      <View style={{flexDirection: 'row', flexWrap: 'wrap', gap: 10}}>
+        {TAG_CATEGORIES.map(tag => (
+          <View style={styles.tagRow} key={tag}>
+            {renderTag(tag)}
+          </View>
+        ))}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 12,
     borderRadius: 10,
     width: '90%',
     alignSelf: 'center',
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   tag: {
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: '#b2514f',
     borderRadius: 20,
     paddingVertical: 6,

@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import {
   AuthHeader,
   CustomButton,
@@ -54,15 +61,10 @@ const Step7Education = ({
             placeholder="Select your highest qualification"
           />
 
-          {selectedQualification !== null && (
-            <CustomDropdownPicker
-              label="College"
-              selectedValue={formData['College'] || ''}
-              onValueChange={val => handleValueChange('College', val)}
-              options={selectedCollegeList}
-              placeholder="Select your college"
-            />
-          )}
+          <View>
+            <Text style={styles.label}>Collage</Text>
+            <TextInput placeholder="Collage" style={styles.input} />
+          </View>
         </View>
 
         <CustomButton
@@ -93,5 +95,20 @@ const styles = StyleSheet.create({
   },
   formGroup: {
     gap: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: theme.colors.inactive,
+    borderRadius: theme.radius.md,
+    padding: theme.spacing.sm,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  label: {
+    marginBottom: theme.spacing.xs,
+    fontSize: theme.text.fontSize.xl,
+    color: theme.colors.textPrimaryHeader,
+    fontWeight: theme.text.fontWeight.medium,
   },
 });

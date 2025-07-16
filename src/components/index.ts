@@ -12,4 +12,5 @@ export {default as ProfileCompletionBanner} from './ProfileCompletionBanner';
 export {default as CustomOptionItem} from './CustomOptionItem';
 export {default as ProfileTabs} from './ProfileTabs';
 export {default as SubscriptionModal} from './SubscriptionModal';
+export {default as UserProfileModel} from './UserProfileModel';
 export {TagFilter} from './search';

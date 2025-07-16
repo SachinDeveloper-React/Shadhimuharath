@@ -3,72 +3,65 @@ import {
   View,
   Text,
   StyleSheet,
-  FlatList,
-  Image,
-  TouchableOpacity,
   SafeAreaView,
   StatusBar,
+  ScrollView,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import LinearGradient from 'react-native-linear-gradient';
 import {CustomButton} from '../../common';
 import {navigate} from '../../services';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-const paymentMethods = [
-  {
-    id: '1',
-    type: 'Google Pay',
-    icon: require('../../assets/google-pay.png'),
-    details: 'f************n@gmail.com',
-  },
-  {
-    id: '2',
-    type: 'Apple Pay',
-    icon: require('../../assets/apple-pay.png'),
-    details: 'f************n@gmail.com',
-  },
-  {
-    id: '3',
-    type: 'Visa',
-    icon: require('../../assets/visa.png'),
-    details: '**** **** **** 1234',
-  },
-  {
-    id: '4',
-    type: 'Master Card',
-    icon: require('../../assets/mastercard.png'),
-    details: '**** **** **** 1234',
-  },
-];
-
-const PaymentMethodItem = ({item}: {item: (typeof paymentMethods)[0]}) => (
-  <TouchableOpacity style={styles.card}>
-    <View style={styles.leftSection}>
-      <Image source={item.icon} style={styles.icon} resizeMode="contain" />
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.type}</Text>
-        <Text style={styles.subtitle}>{item.details}</Text>
-      </View>
-    </View>
-    <Icon name="chevron-right" size={24} color="#b00020" />
-  </TouchableOpacity>
-);
+const PLAN_NAME = 'Silver Plan';
+const PLAN_DURATION = '6 Months';
+const PLAN_PRICE = 1499;
+const GST_PERCENT = 18;
+const GST_AMOUNT = (PLAN_PRICE * GST_PERCENT) / 100;
+const TOTAL = PLAN_PRICE + GST_AMOUNT;
 
 const PaymentMethodScreen = () => {
   return (
-    <SafeAreaView style={[styles.container]}>
-      <View style={{flex: 1, paddingHorizontal: 16, paddingTop: 16}}>
-        <FlatList
-          data={paymentMethods}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => <PaymentMethodItem item={item} />}
-        />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.innerContainer}>
+        <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
+          <LinearGradient
+            colors={['#F05A8E', '#ED1C24']}
+            style={styles.planCard}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}>
+            <View style={styles.planContent}>
+              <View style={styles.planHeader}>
+                <Text style={styles.planTitle}>{PLAN_NAME}</Text>
+                <View style={styles.planPriceTag}>
+                  <Text style={styles.planPriceText}>Rs {PLAN_PRICE}/-</Text>
+                </View>
+              </View>
+              <Text style={styles.planDuration}>{PLAN_DURATION}</Text>
+            </View>
+          </LinearGradient>
+
+          <View style={styles.priceDetails}>
+            <View style={styles.priceRow}>
+              <Text style={styles.labelText}>Plan Price</Text>
+              <Text style={styles.valueText}>Rs {PLAN_PRICE}</Text>
+            </View>
+            <View style={styles.priceRow}>
+              <Text style={styles.labelText}>GST ({GST_PERCENT}%)</Text>
+              <Text style={styles.valueText}>Rs {GST_AMOUNT.toFixed(2)}</Text>
+            </View>
+
+            <View style={styles.divider} />
+
+            <View style={styles.priceRow}>
+              <Text style={styles.totalLabel}>Total</Text>
+              <Text style={styles.totalValue}>Rs {TOTAL.toFixed(2)}</Text>
+            </View>
+          </View>
+        </ScrollView>
+
         <CustomButton
           title="Add Payment Method"
           onPress={() => navigate('AddPaymentMethod')}
-          style={{
-            paddingBottom: StatusBar?.currentHeight,
-          }}
+          style={{paddingBottom: StatusBar?.currentHeight}}
         />
       </View>
     </SafeAreaView>
@@ -82,44 +75,79 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  card: {
-    backgroundColor: '#fff0f0',
-    borderWidth: 1,
-    borderColor: '#b00020',
-    borderRadius: 12,
+  innerContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  planCard: {
+    borderRadius: 16,
+  },
+  planContent: {
     padding: 16,
-    marginBottom: 12,
+    flexDirection: 'column',
+    gap: 16,
+  },
+  planHeader: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  leftSection: {
-    flexDirection: 'row',
     alignItems: 'center',
-    flex: 1,
   },
-  icon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    marginRight: 16,
-    backgroundColor: '#5c0d15',
-    padding: 8,
+  planTitle: {
+    fontSize: 20,
+    fontWeight: '500',
+    color: '#FFFFFF',
   },
-  textContainer: {
-    flex: 1,
+  planPriceTag: {
+    backgroundColor: '#FB3748',
+    borderRadius: 100,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
   },
-  title: {
-    fontWeight: '700',
+  planPriceText: {
     fontSize: 12,
-    lineHeight: 21,
-    color: '#BF3638',
+    fontWeight: '800',
+    color: '#FFFFFF',
   },
-  subtitle: {
-    fontSize: 12,
-    lineHeight: 21,
+  planDuration: {
+    fontSize: 13.3,
     fontWeight: '400',
-    color: '#D36366',
-    marginTop: 4,
+    color: '#FFFFFF',
+  },
+  priceDetails: {
+    marginTop: 20,
+    paddingHorizontal: 8,
+    flexDirection: 'column',
+    gap: 8,
+  },
+  priceRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  labelText: {
+    fontSize: 16,
+    fontWeight: '300',
+    color: '#9F443D',
+  },
+  valueText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#9F443D',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#9F443D33',
+    marginVertical: 8,
+  },
+  totalLabel: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#9F443D',
+  },
+  totalValue: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#9F443D',
   },
 });

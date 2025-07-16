@@ -1,5 +1,5 @@
 import React from 'react';
-import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import {DrawerContentScrollView} from '@react-navigation/drawer';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Logo2 from '../assets/icon/Logo2';
 import {CloseIcon} from '../assets';
@@ -17,6 +17,11 @@ const CustomDrawer = (props: any) => {
       </View>
 
       <View style={styles.menuContainer}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => props.navigation.navigate('Main')}>
+          <Text style={styles.menuText}>Home</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() =>
@@ -51,6 +56,13 @@ const CustomDrawer = (props: any) => {
             props.navigation.navigate('Main', {screen: 'Profile'})
           }>
           <Text style={styles.menuText}>Setting</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() =>
+            props.navigation.navigate('Main', {screen: 'Profile'})
+          }>
+          <Text style={styles.menuText}>Support</Text>
         </TouchableOpacity>
       </View>
 

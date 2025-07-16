@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import {
   AuthHeader,
   CustomButton,
@@ -11,6 +18,7 @@ import {SetupProfileStackParamList} from '../../../navigations';
 import {getCityOptions, getStateOptions} from '../../../utils';
 import {countryData} from './helper';
 import {theme} from '../../../constant';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const Step2Location = ({
   navigation,
@@ -28,7 +36,10 @@ const Step2Location = ({
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+        enableOnAndroid>
         <View style={styles.form}>
           <AuthHeader
             onPress={() => navigation.goBack()}
@@ -71,6 +82,19 @@ const Step2Location = ({
             options={cityOptions}
             placeholder="Select City"
           />
+
+          <CustomDropdownPicker
+            label="District"
+            selectedValue={selectedCity}
+            onValueChange={setSelectedCity}
+            options={cityOptions}
+            placeholder="Select District"
+          />
+
+          <View>
+            <Text style={styles.label}>Block</Text>
+            <TextInput placeholder="Block" style={styles.input} />
+          </View>
         </View>
 
         <CustomButton
@@ -81,7 +105,7 @@ const Step2Location = ({
           accessibilityLabel="Continue button"
           accessibilityHint="Goes to the next step"
         />
-      </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
@@ -93,8 +117,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  content: {
-    flex: 1,
+  scrollContent: {
+    flexGrow: 1,
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: StatusBar.currentHeight,
@@ -102,5 +126,20 @@ const styles = StyleSheet.create({
   form: {
     flexDirection: 'column',
     gap: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: theme.colors.inactive,
+    borderRadius: theme.radius.md,
+    padding: theme.spacing.sm,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  label: {
+    marginBottom: theme.spacing.xs,
+    fontSize: theme.text.fontSize.xl,
+    color: theme.colors.textPrimaryHeader,
+    fontWeight: theme.text.fontWeight.medium,
   },
 });

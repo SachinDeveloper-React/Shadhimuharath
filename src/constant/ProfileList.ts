@@ -7,8 +7,8 @@ import {
   RightIcon,
   SettingIcon,
   ShortlistIcon,
+  SupportIcon,
   UserIcon,
-  UserReviewIcon,
 } from '../assets';
 
 export const profileList = [
@@ -17,7 +17,7 @@ export const profileList = [
     sublist: [
       {
         id: 1,
-        title: 'Personal Info',
+        title: 'Edit Profile',
         leftIcon: UserIcon,
         rightIcon: RightIcon,
         navigation: 'PersonalInfo',
@@ -42,13 +42,6 @@ export const profileList = [
         navigation: 'Notification',
       },
       {
-        id: 3,
-        title: 'Payment Method',
-        leftIcon: PaymentMethodIcon,
-        rightIcon: RightIcon,
-        navigation: 'PaymentMethod',
-      },
-      {
         id: 4,
         title: 'Subscription',
         leftIcon: PaymentMethodIcon,
@@ -62,17 +55,17 @@ export const profileList = [
     sublist: [
       {
         id: 1,
+        title: 'Support',
+        leftIcon: SupportIcon,
+        rightIcon: RightIcon,
+        navigation: '',
+      },
+      {
+        id: 2,
         title: 'FAQs',
         leftIcon: FaqIcon,
         rightIcon: RightIcon,
         navigation: 'Faq',
-      },
-      {
-        id: 2,
-        title: 'User Reviews',
-        leftIcon: UserReviewIcon,
-        rightIcon: RightIcon,
-        navigation: 'UserReview',
       },
       {
         id: 3,

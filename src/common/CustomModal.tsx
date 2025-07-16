@@ -1,21 +1,38 @@
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, ViewStyle} from 'react-native';
 import React, {ReactNode} from 'react';
 import Modal from 'react-native-modal';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {CrossIcon, PlusIcon} from '../assets';
 
 type Props = {
   isVisible: boolean;
   closeModal: () => void;
   children: ReactNode;
+  position?: 'center' | 'flex-end' | 'flex-start';
+  modalStyle?: ViewStyle;
+  modalContentStyle?: ViewStyle;
 };
 
-const CustomModal = ({isVisible, closeModal, children}: Props) => {
+const CustomModal = ({
+  isVisible,
+  closeModal,
+  children,
+  position = 'flex-end',
+  modalStyle,
+  modalContentStyle,
+}: Props) => {
   const {bottom} = useSafeAreaInsets();
   return (
     <Modal
       isVisible={isVisible}
       onBackdropPress={closeModal}
-      style={styles.modalContainer}
+      style={[
+        styles.modalContainer,
+        {
+          justifyContent: position,
+        },
+        modalStyle,
+      ]}
       swipeDirection="down"
       onSwipeComplete={closeModal}
       animationIn="slideInUp"
@@ -26,9 +43,16 @@ const CustomModal = ({isVisible, closeModal, children}: Props) => {
           {
             paddingBottom: bottom,
           },
+          modalContentStyle,
         ]}>
         <View style={styles.modalHandle} />
         {children}
+
+        <TouchableOpacity
+          onPress={closeModal}
+          style={{position: 'absolute', zIndex: 99999, top: -20, right: 0}}>
+          <CrossIcon />
+        </TouchableOpacity>
       </View>
     </Modal>
   );
@@ -38,14 +62,15 @@ export default CustomModal;
 
 const styles = StyleSheet.create({
   modalContainer: {
-    justifyContent: 'flex-end',
+    position: 'relative',
     margin: 0,
   },
   modalContent: {
+    position: 'relative',
     backgroundColor: '#fff',
     padding: 20,
-    borderTopRightRadius: 16,
-    borderTopLeftRadius: 16,
+    borderTopRightRadius: 36,
+    borderTopLeftRadius: 36,
   },
   modalHandle: {
     width: 40,

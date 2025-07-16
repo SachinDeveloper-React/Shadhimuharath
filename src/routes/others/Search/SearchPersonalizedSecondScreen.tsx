@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {CustomButton, CustomDropdownPicker} from '../../../common';
 import {theme} from '../../../constant';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../navigations';
 
 const SearchPersonalizedSecondScreen = ({
@@ -12,6 +12,9 @@ const SearchPersonalizedSecondScreen = ({
   'SearchPersonalizedSecondScreen'
 >) => {
   const [form, setForm] = useState({
+    religion: '',
+    community: '',
+    subCommunity: '',
     highestQualification: '',
     college: '',
     annualIncome: '',
@@ -26,6 +29,45 @@ const SearchPersonalizedSecondScreen = ({
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.row}>
+        <CustomDropdownPicker
+          label="Religion"
+          placeholder="Select Religion"
+          selectedValue={form.religion}
+          onValueChange={val => handleChange('religion', val)}
+          options={['Hindu', 'Muslim', 'Christian', 'Sikh']}
+          style={styles.input}
+          borderColor="primary"
+          textStyle={{
+            color: theme.colors.textPrimaryHeader,
+          }}
+        />
+        <CustomDropdownPicker
+          label="Community"
+          placeholder="Select Community"
+          selectedValue={form.community}
+          onValueChange={val => handleChange('community', val)}
+          options={['Hindi', 'Tamil', 'Bengali']}
+          style={styles.input}
+          borderColor="primary"
+          textStyle={{
+            color: theme.colors.textPrimaryHeader,
+          }}
+        />
+      </View>
+
+      <CustomDropdownPicker
+        label="Sub Community"
+        placeholder="Select Sub Community"
+        selectedValue={form.subCommunity}
+        onValueChange={val => handleChange('subCommunity', val)}
+        options={['Sub A', 'Sub B', 'Sub C']}
+        style={styles.inputFull}
+        borderColor="primary"
+        textStyle={{
+          color: theme.colors.textPrimaryHeader,
+        }}
+      />
       <CustomDropdownPicker
         label="Highest Qualification"
         placeholder="Select Qualification"
@@ -37,34 +79,35 @@ const SearchPersonalizedSecondScreen = ({
         textStyle={{color: theme.colors.textPrimaryHeader}}
       />
 
-      <CustomDropdownPicker
-        label="College"
-        placeholder="Select College"
-        selectedValue={form.college}
-        onValueChange={val => handleChange('college', val)}
-        options={['IIT Delhi', 'IIM Bangalore', 'DU', 'Other']}
-        style={styles.inputFull}
-        borderColor="primary"
-        textStyle={{color: theme.colors.textPrimaryHeader}}
-      />
+      <View style={styles.row}>
+        <CustomDropdownPicker
+          label="College"
+          placeholder="Select College"
+          selectedValue={form.college}
+          onValueChange={val => handleChange('college', val)}
+          options={['IIT Delhi', 'IIM Bangalore', 'DU', 'Other']}
+          style={styles.input}
+          borderColor="primary"
+          textStyle={{color: theme.colors.textPrimaryHeader}}
+        />
 
-      <CustomDropdownPicker
-        label="Annual Income"
-        placeholder="Select Income Range"
-        selectedValue={form.annualIncome}
-        onValueChange={val => handleChange('annualIncome', val)}
-        options={[
-          '₹0–5 LPA',
-          '₹5–10 LPA',
-          '₹10–20 LPA',
-          '₹20–50 LPA',
-          '₹50+ LPA',
-        ]}
-        style={styles.inputFull}
-        borderColor="primary"
-        textStyle={{color: theme.colors.textPrimaryHeader}}
-      />
-
+        <CustomDropdownPicker
+          label="Annual Income"
+          placeholder="Select Income"
+          selectedValue={form.annualIncome}
+          onValueChange={val => handleChange('annualIncome', val)}
+          options={[
+            '₹0–5 LPA',
+            '₹5–10 LPA',
+            '₹10–20 LPA',
+            '₹20–50 LPA',
+            '₹50+ LPA',
+          ]}
+          style={styles.input}
+          borderColor="primary"
+          textStyle={{color: theme.colors.textPrimaryHeader}}
+        />
+      </View>
       <View style={styles.row}>
         <CustomDropdownPicker
           label="Job Sector"
@@ -100,7 +143,7 @@ const SearchPersonalizedSecondScreen = ({
         textStyle={{color: theme.colors.textPrimaryHeader}}
       />
 
-      <CustomButton title="Next" onPress={() => navigation.popToTop()} />
+      <CustomButton title="Done" onPress={() => navigation.popToTop()} />
     </ScrollView>
   );
 };

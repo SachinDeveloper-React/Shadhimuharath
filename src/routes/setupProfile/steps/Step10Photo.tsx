@@ -6,6 +6,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import {
@@ -16,9 +17,8 @@ import {
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {SetupProfileStackParamList} from '../../../navigations';
-import {CameraIcon, GallaryIcon} from '../../../assets';
+import {CameraIcon, GallaryIcon, PlusIcon} from '../../../assets';
 import {theme} from '../../../constant';
-import {authService} from '../../../services';
 import {mediaPickerService} from '../../../utils/mediaPickerService';
 import {Asset} from 'react-native-image-picker';
 
@@ -33,15 +33,6 @@ const Step10Photo = ({navigation}: Props) => {
       if (asset) setProfilePhoto(asset);
     } catch (err) {
       Alert.alert('Camera error', err as string);
-    }
-  };
-
-  const handleGallery = async () => {
-    try {
-      const asset = await mediaPickerService.pickFromGallery();
-      if (asset) setProfilePhoto(asset);
-    } catch (err) {
-      Alert.alert('Gallery error', err as string);
     }
   };
 
@@ -82,15 +73,20 @@ const Step10Photo = ({navigation}: Props) => {
           </View>
 
           <View style={styles.photoPlaceholderBorder}>
-            {/* <View style={styles.photoPlaceholder} /> */}
-            {profilePhoto ? (
-              <Image
-                source={{uri: profilePhoto.uri}}
-                style={styles.photoPlaceholder}
-              />
-            ) : (
-              <View style={styles.photoPlaceholder} />
-            )}
+            <Image
+              source={{
+                uri:
+                  profilePhoto?.uri ||
+                  'https://img.icons8.com/puffy-filled/200/user.png',
+              }}
+              style={styles.photoPlaceholder}
+            />
+
+            <TouchableOpacity
+              onPress={handleCamera}
+              style={{position: 'absolute', bottom: -25}}>
+              <PlusIcon />
+            </TouchableOpacity>
           </View>
 
           <View style={styles.textWrapper}>
@@ -149,6 +145,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.md,
   },
   photoPlaceholderBorder: {
+    position: 'relative',
     marginTop: -theme.spacing.xxxl * 2,
     width: 162,
     height: 162,
@@ -157,7 +154,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: theme.colors.inactive,
+    borderColor: '#620B00',
   },
   photoPlaceholder: {
     width: 148,

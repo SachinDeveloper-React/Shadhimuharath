@@ -8,14 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-import {
-  CustomButton,
-  CustomGradientOutlineButton,
-  CustomModal,
-  GradientText,
-  UpgradeButton,
-} from '../../common';
+import {GradientText, UpgradeButton} from '../../common';
 import {RightIcon} from '../../assets';
 import {
   CardItem,
@@ -24,9 +17,8 @@ import {
   ProfileCompletionBanner,
   SubscriptionModal,
 } from '../../components';
-import {cardListData} from '../../constant/cardListData';
 import {navigate} from '../../services';
-import {theme} from '../../constant';
+import {cardListData} from '../../constant/cardListData';
 
 const CARD_WIDTH = Dimensions.get('window').width;
 

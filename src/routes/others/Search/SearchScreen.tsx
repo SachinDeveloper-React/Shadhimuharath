@@ -46,15 +46,18 @@ const SearchScreen = (props: Props) => {
           </View>
         </View>
 
-        <TagFilter />
-
         <CustomButton
           title="Personalized Search"
           style={{
-            paddingHorizontal: 16,
+            padding: 16,
+          }}
+          linearButtonStyle={{
+            borderRadius: theme.radius.full,
           }}
           onPress={() => navigate('SearchPersonalizedFirstScreen')}
         />
+
+        <TagFilter />
       </ScrollView>
 
       <CustomModal isVisible={isModalVisible} closeModal={closeModal}>

@@ -1,20 +1,29 @@
-import {Pressable, PressableProps, StyleSheet, Text} from 'react-native';
+import {
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  Text,
+  ViewStyle,
+} from 'react-native';
 import React from 'react';
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient, {
+  LinearGradientProps,
+} from 'react-native-linear-gradient';
 import {theme} from '../constant';
 
 type Props = PressableProps & {
   title: string;
+  linearButtonStyle?: ViewStyle;
 };
 
-const Button = ({title, ...props}: Props) => {
+const Button = ({title, linearButtonStyle, ...props}: Props) => {
   return (
     <Pressable {...props}>
       <LinearGradient
         colors={['#F05A8E', '#ED1C24']}
         start={{x: 0, y: 0.5}}
         end={{x: 1, y: 0.5}}
-        style={[styles.linearGradient]}>
+        style={[styles.linearGradient, linearButtonStyle]}>
         <Text style={styles.buttonText}>{title}</Text>
       </LinearGradient>
     </Pressable>

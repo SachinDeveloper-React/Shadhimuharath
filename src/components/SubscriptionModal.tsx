@@ -24,7 +24,10 @@ const SubscriptionModal = ({
   ];
 
   return (
-    <CustomModal isVisible={isModalVisible} closeModal={closeModal}>
+    <CustomModal
+      isVisible={isModalVisible}
+      closeModal={closeModal}
+      position="center">
       <View style={{gap: 10}}>
         <Text
           style={{

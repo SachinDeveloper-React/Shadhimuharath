@@ -13,9 +13,8 @@ const SearchPersonalizedFirstScreen = () => {
     country: '',
     state: '',
     city: '',
-    religion: '',
-    community: '',
-    subCommunity: '',
+    district: '',
+    block: '',
   });
 
   const handleChange = (key: keyof typeof form, value: string) => {
@@ -120,11 +119,11 @@ const SearchPersonalizedFirstScreen = () => {
 
       <View style={styles.row}>
         <CustomDropdownPicker
-          label="Religion"
+          label="District"
           placeholder="Select Religion"
-          selectedValue={form.religion}
-          onValueChange={val => handleChange('religion', val)}
-          options={['Hindu', 'Muslim', 'Christian', 'Sikh']}
+          selectedValue={form.district}
+          onValueChange={val => handleChange('district', val)}
+          options={['Panjabi Bagh']}
           style={styles.input}
           borderColor="primary"
           textStyle={{
@@ -132,11 +131,11 @@ const SearchPersonalizedFirstScreen = () => {
           }}
         />
         <CustomDropdownPicker
-          label="Community"
-          placeholder="Select Community"
-          selectedValue={form.community}
-          onValueChange={val => handleChange('community', val)}
-          options={['Hindi', 'Tamil', 'Bengali']}
+          label="Block"
+          placeholder="Select Block"
+          selectedValue={form.block}
+          onValueChange={val => handleChange('block', val)}
+          options={['JJ Colony']}
           style={styles.input}
           borderColor="primary"
           textStyle={{
@@ -144,19 +143,6 @@ const SearchPersonalizedFirstScreen = () => {
           }}
         />
       </View>
-
-      <CustomDropdownPicker
-        label="Sub Community"
-        placeholder="Select Sub Community"
-        selectedValue={form.subCommunity}
-        onValueChange={val => handleChange('subCommunity', val)}
-        options={['Sub A', 'Sub B', 'Sub C']}
-        style={styles.inputFull}
-        borderColor="primary"
-        textStyle={{
-          color: theme.colors.textPrimaryHeader,
-        }}
-      />
 
       <CustomButton
         title="Next"
