@@ -22,7 +22,7 @@ import {
 } from '../../assets';
 import {goBack} from '../../services';
 import {ProfileTabs, UserProfileModel} from '../../components';
-import {CustomGradientOutlineButton} from '../../common';
+import {AnimatedReportMenu, CustomGradientOutlineButton} from '../../common';
 import {theme} from '../../constant';
 
 const UserProfileScreen = () => {
@@ -73,7 +73,21 @@ const UserProfileScreen = () => {
                 />
               )}
               <PremiumIcon />
-              <ThreeDotMenuIcon />
+              {/* <View style={{position: 'relative', backgroundColor: 'red'}}>
+                <ThreeDotMenuIcon />
+                <TouchableOpacity
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+
+                    backgroundColor: '#fff',
+                  }}>
+                  <Text>Report</Text>
+                </TouchableOpacity>
+              </View> */}
+
+              <AnimatedReportMenu />
             </View>
           </View>
         </ImageBackground>

@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import {navigate} from '../../services';
 
 const NotificationsScreen: React.FC = () => {
   return (
@@ -118,7 +119,9 @@ const NotificationDocumentCard = () => {
       </View>
 
       <View style={styles.actionRow}>
-        <TouchableOpacity style={styles.acceptButton}>
+        <TouchableOpacity
+          style={styles.acceptButton}
+          onPress={() => navigate('UploadDocumentScreen')}>
           <Text style={styles.acceptText}>Upload Document</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.rejectButton}>

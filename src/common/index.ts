@@ -8,6 +8,7 @@ export {default as CustomDropdownPicker} from './DropdownPicker';
 export {default as UpgradeButton} from './UpgradeButton';
 export {default as GradientText} from './GradientText';
 export {default as CustomModal} from './CustomModal';
+export {default as AnimatedReportMenu} from './AnimatedReportMenu';
 export {
   default as CustomCarousel,
   type CarouselItem,

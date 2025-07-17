@@ -62,4 +62,7 @@ export type RootStackParamList = {
   SearchPersonalizedSecondScreen: undefined;
   TermAndConditionScreen: undefined;
   PrivacyAndPolicyScreen: undefined;
+  UploadMarksheetScreen: undefined;
+  UploadDocumentScreen: undefined;
+  UploadAdhaarCardDocumentScreen: undefined;
 };

@@ -12,6 +12,8 @@
   "dependencies": {
     "@react-native-community/blur": "^4.4.1",
     "@react-native-community/datetimepicker": "^8.4.1",
+    "@react-native-documents/picker": "^10.1.5",
+    "@react-native-documents/viewer": "^1.0.1",
     "@react-native-masked-view/masked-view": "^0.3.2",
     "@react-native-picker/picker": "^2.11.0",
     "@react-navigation/bottom-tabs": "^7.3.14",

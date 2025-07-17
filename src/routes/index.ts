@@ -53,4 +53,7 @@ export {
   SearchPersonalizedSecondScreen,
   PrivacyAndPolicyScreen,
   TermAndConditionScreen,
+  UploadDocumentScreen,
+  UploadMarksheetScreen,
+  UploadAdhaarCardDocumentScreen,
 } from './others';

@@ -60,4 +60,5 @@ export {
   SupportIcon,
   SilverPremiumIcon,
   GoldPremiumIcon,
+  BugIcon,
 } from './icon';

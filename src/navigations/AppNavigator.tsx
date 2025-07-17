@@ -29,6 +29,9 @@ import {
   TermAndConditionScreen,
   UserProfileScreen,
   UserReviewScreen,
+  UploadDocumentScreen,
+  UploadMarksheetScreen,
+  UploadAdhaarCardDocumentScreen,
 } from '../routes';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -282,6 +285,39 @@ const AppNavigator = () => {
               headerTintColor: '#4F1617',
             }}
             component={PrivacyAndPolicyScreen}
+          />
+          <RootStack.Screen
+            name="UploadDocumentScreen"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: 'Document verification',
+              headerTitleAlign: 'left',
+              headerTintColor: '#4F1617',
+            }}
+            component={UploadDocumentScreen}
+          />
+          <RootStack.Screen
+            name="UploadAdhaarCardDocumentScreen"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: 'Document verification',
+              headerTitleAlign: 'left',
+              headerTintColor: '#4F1617',
+            }}
+            component={UploadAdhaarCardDocumentScreen}
+          />
+          <RootStack.Screen
+            name="UploadMarksheetScreen"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: 'Document verification',
+              headerTitleAlign: 'left',
+              headerTintColor: '#4F1617',
+            }}
+            component={UploadMarksheetScreen}
           />
         </>
       )}

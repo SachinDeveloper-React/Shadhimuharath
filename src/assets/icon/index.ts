@@ -63,3 +63,4 @@ export {default as ThreeDotMenuIcon} from './ThreeDotMenuIcon';
 export {default as SupportIcon} from './SupportIcon';
 export {default as SilverPremiumIcon} from './SilverPremium';
 export {default as GoldPremiumIcon} from './GoldPremiumIcon';
+export {default as BugIcon} from './BugIcon';

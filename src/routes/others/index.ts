@@ -26,3 +26,6 @@ export {
 
 export {default as PrivacyAndPolicyScreen} from './PrivacyAndPolicyScreen';
 export {default as TermAndConditionScreen} from './TermAndConditionScreen';
+export {default as UploadDocumentScreen} from './UploadDocumentScreen';
+export {default as UploadMarksheetScreen} from './UploadMarksheetScreen';
+export {default as UploadAdhaarCardDocumentScreen} from './UploadAdhaarCardDocumentScreen';
